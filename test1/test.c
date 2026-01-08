@@ -554,3 +554,13 @@
 //	}
 //	return 0;
 // }
+void test()
+{
+	printf("hehe");
+}
+int main()
+{
+	printf("xixi\n");
+	test();
+	return 0;
+}
