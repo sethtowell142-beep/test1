@@ -554,13 +554,116 @@
 //	}
 //	return 0;
 // }
-void test()
-{
-	printf("hehe");
-}
-int main()
-{
-	printf("xixi\n");
-	test();
-	return 0;
-}
+//void test()
+//{
+//	printf("hehe");
+//}
+//int main()
+//{
+//	printf("xixi\n");
+//	test();
+//	return 0;
+//}
+//int main()
+//{
+//	int n = 0;
+//	scanf("%d", &n);
+//	int a = 0;
+//	int c = 1;
+//	for(a=1; a <= n; a++)
+//			c = c * a;
+//	printf("%d", c);
+//	return 0;
+//}
+//int main()
+//{
+//	int arr[11] = { 1,2,3,4,5,6,7,8,9,10,11 };
+//	int n = 0;
+//	int a = 0;
+//	int d = 0;
+//	while (arr[n] <= 10)
+//	{
+//		int c = 1;
+//		for (a = 1; a <= n + 1; a++)           最初尝试 1到10 的阶乘
+//		{
+//			c = c * a;
+//		}
+//		d = d + c;
+//		printf("%d\n", d);
+//		n++;
+//			
+//	}
+//
+//	return 0;
+//}
+//int main()
+//{
+//	int n = 10;
+//	int i = 0;
+//	int a = 1;
+//	int sum = 0;
+//	for (i = 1; i <= n; i++)      1 到10 的阶乘 类似的叠加问题 都是自我指涉的问题。
+//	{
+//		 a = a * i;
+//		 sum = sum + a; 
+//	}
+//	printf("%d", sum);
+//	return 0;
+//}
+//int main()
+//{
+//	int n = 0;
+//	int a = 0;
+//	int sum = 0;
+//	for (n = 1; n <= 10; n++)
+//	{
+//
+//		int c = 1;
+//		for (a = 1; a <= n; a++)                更一般的
+//		{
+//			
+//			c = c * a;
+//
+//		}
+//		sum = sum + c;
+//	}
+//	printf("%d", sum);
+//	return 0;
+//}
+//int main()
+//{
+//	int i = 0;
+//	int n = 10;
+//	int c = 1;
+//	int sum = 0;
+//	for (i = 1; i <= n; i++)              自我指涉与变量范围
+//	{
+//		c = c * i;
+//		sum = sum + c;
+//		}
+//	printf("%d", sum);
+//	return 0;
+//}
+//int main()
+//{
+//	int arr[] = { 1,2,3,4,5,6,7,8,9,10,11,12,13,14 };
+//	int left = 0;
+//	int right = sizeof(arr) / sizeof(arr[0]);
+//	int g = 17;
+//	while (left <= right)
+//	{
+//		int mid = (left + right) / 2;
+//		if (arr[mid] < g)                          二分查找法   用于 有序数组 。重新定义左右 刷新中的定义 循环
+//			left = mid + 1;
+//		else if (arr[mid] > g)
+//			right = mid - 1;
+//		else
+//		{
+//			printf("ok");
+//			break;
+//		}
+//	}
+//	if (left > right)
+//		printf("it's not here");
+//	return 0;
+//}
