@@ -171,3 +171,27 @@
 //	printf("%d\t %d", c,d);
 //	return 0;
 //}
+#include "add.h"	
+//int main()
+//{
+//	int a = 10;
+//	int b = 20;
+//	int sum = add(a, b);
+//	printf("%d", sum);
+//	return 0;
+//}
+//void print(unsigned int a)
+//{
+//	if (a > 9)
+//	{
+//		print(a / 10);         递  归。 确定一个条件
+//	}
+//	printf("%d ", a % 10);
+//}
+//int main()
+//{
+//	unsigned int a = 0;
+//	scanf("%d", &a);
+//	print(a);
+//	return 0;
+//}

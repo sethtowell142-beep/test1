@@ -646,24 +646,332 @@
 //}
 //int main()
 //{
-//	int arr[] = { 1,2,3,4,5,6,7,8,9,10,11,12,13,14 };
+//int arr[] = { 1,2,3,4,5,6,7,8,9,10,11,12,13,14 };
+//int left = 0;
+//int right = sizeof(arr) / sizeof(arr[0]) - 1;
+//int g = 17;
+//while (left <= right)
+//{
+////int mid = (left + right) / 2;
+//	int mid = (right - left) / 2 + left;
+//if (arr[mid] < g)                          //二分查找法   用于 有序数组 。重新定义左右 刷新中的定义 循环
+//		left = mid + 1;
+//else if (arr[mid] > g)
+//		right = mid - 1;
+//else
+//{
+//		printf("ok");
+//		break;
+//}
+//}
+//if (left > right)
+//	printf("it's not here");
+//	return 0;
+//}
+#include <Windows.h>
+#include <stdlib.h>
+//int main()
+//{
+//	char arr1[] = "123456789";
+//	char arr2[] = "!!!!!!!!!";
 //	int left = 0;
-//	int right = sizeof(arr) / sizeof(arr[0]);
-//	int g = 17;
+//	int right = strlen(arr1) - 1;             字符串长度 -1.从0开始标   sizeof(arr1)/size(arr1[0])-2 字符串有隐藏的\0
 //	while (left <= right)
 //	{
-//		int mid = (left + right) / 2;
-//		if (arr[mid] < g)                          二分查找法   用于 有序数组 。重新定义左右 刷新中的定义 循环
-//			left = mid + 1;
-//		else if (arr[mid] > g)
-//			right = mid - 1;
-//		else
+//		arr2[left] = arr1[left];
+//		arr2[right] = arr1[right];
+//		printf("%s\n", arr2);
+//		Sleep(1000);
+//		system("cls");
+//		left++;
+//		right--;
+//	}
+//	printf("%s\n", arr2);
+//	return 0;
+//}
+//int main()
+//{
+//	printf("password\n");
+//	char arr[22] = "";
+//	char arr1[] = "12345";
+//	int a = 0;
+//	for (a = 0; a < 3; a++)
+//	{
+//		scanf("%s", arr);
+//		int left = 0;
+//		for (left = 0; left <= 4; left++)      123456 也对 快使用strcmp
 //		{
-//			printf("ok");
+//			if (arr[left] == arr1[left])
+//				left = left;
+//			else
+//				break;
+//		}
+//		if (left == 5)
+//			printf("welcome");
+//		else
+//			printf("try again");
+//	}
+//
+//	return 0;
+//}
+//int main()
+//{
+//	int i = 0;
+//	char arr[22] = { 0 };
+//	printf("password");
+//	for (i = 0; i < 3; i++)
+//	{
+//		scanf("%s", arr);
+//		if (strcmp(arr, "123456") == 0)
+//		{
+//			printf("welcome");
 //			break;
 //		}
+//		else
+//			printf("err\n");
 //	}
+//	if (i == 3)
+//		printf("err");
+//	return 0;
+//}
+//int main()
+//{
+//	char arr[] = { '1','2','3','4'};
+//	int b = strlen(arr);
+//	int c = sizeof(arr) / sizeof(arr[0]);    strlen 只能用于 char 类型 如果读int \0就会停  “”自带 \0 sizeof会多读一个  
+//	printf("%d\n", b);
+//	printf("%d", c);
+//	return 0;
+//}
+//int get_max(int e, int f)
+//{
+//	int g = (e > f ? e: f);
+//	return g;
+//}
+//int main()
+//{
+//	int a = 0;
+//	int b = 0;
+//	scanf("%d %d", &a, &b);
+//	int c = get_max(a, b);
+//	printf("%d", c);
+//	return 0;
+//}
+//void swap(int* px, int* py)
+//{
+//	int z = 0;
+//	z = *px;
+//	*px = *py;
+//	*py = z;
+//}
+//int main()
+//{
+//	int a = 0;
+//	int b = 0;
+//	scanf("%d %d", &a, &b);
+//	printf("a=%d,b=%d\n", a, b);
+// swap(a,b);err.                      ab是实参，xy是形参，都有独立的位置，把值传过去交换但并没有影响 ab。使用地址 然后解地址修改。
+//	swap(&a, &b);
+//	printf("a=%d,b=%d\n", a, b);
+//	return 0;
+//}
+#include <math.h>
+//int test(int a)
+//{
+//	int b = 0;
+//	for (b = 2; b <= sqrt(a); b++)         b*b <= a 避免浮点   
+//	{
+//		if (a % b == 0)
+//			return 0;
+//	}
+//	return 1;
+//}
+//int main()
+//{
+//	int c = 1;
+//	int count = 0;
+//	for (c = 101; c <= 200; c += 2)
+//	{
+//		if (test(c))
+//		{
+//			count++;
+//			printf("%d ", c);
+//		}
+//	}
+//	printf("\n%d", count);
+//	return 0;
+//}
+//int leap_year(int y)
+//{
+//	if (((y % 4 == 0) && (y % 100 != 0)) || (y % 400 == 0))
+//	{
+//		return 1;
+//	}
+//	else
+//	{
+//		return 0;
+//	}
+//}
+//int main()
+//{
+//	int year = 0;
+//	for (year = 1000; year <= 2000; year++)
+//	{
+//		if (leap_year(year))
+//		{
+//			printf("%d ", year);
+//		}
+//	}
+//	return 0;
+//}
+//int search(int arr1[], int c, int szz)
+//{
+//	int left = 0;
+//	int right = szz - 1;
+//	while (left <= right)
+//	{
+//		int mid = (right - left) / 2 + left;
+//		if (arr1[mid] < c)
+//		{
+//			left = mid + 1;
+//		}
+//		else if (arr1[mid] > c)
+//		{
+//			right = mid - 1;
+//		}
+//		else
+//		{
+//			return mid;
+//		}
+//	}
+//
 //	if (left > right)
-//		printf("it's not here");
+//	{
+//		return -1;
+//	}
+//}
+//int main()
+//{ int search(int arr1[], int c, int szz)
+//	int left = 0;
+//	int right = szz - 1;
+//	while (left <= right)
+//	{
+//		int mid = (right - left) / 2 + left;
+//		if (arr1[mid] < c)
+//		{
+//			left = mid + 1;
+//		}
+//		else if (arr1[mid] > c)
+//		{
+//			right = mid - 1;
+//		}
+//		else
+//		{
+//			return mid;
+//		}
+//	}
+//
+//	if (left > right)
+//	{
+//		return -1;
+//	}
+//}
+//int main()
+//{
+//	int arr[] = { 1,2,3,4,5,6,7,8,9 };            arr[20] 多出的空间会变成 0  导致无序。
+//	int k = 7;
+//	int sz = sizeof(arr) / sizeof(arr[0]);
+//	int ret = search(arr, k, sz);            数组传参只传首元素地址    上面的 arr1[] 是指针
+//	printf("%d", ret);
+//	return 0;
+//}
+
+//void test(int* pn)
+//{
+//	*pn =  *pn + 1;
+//	(*pn)++;
+//}
+//int main()
+//{
+//	int num = 0;
+//	test(&num);
+//	printf("%d", num);
+//	return 0;
+//}
+//int main()
+//{
+//	printf("%d", printf("%d", printf("%d", 45)));  4521 .printf的返回值是字符个数。
+//
+//	return 0;
+//}
+//void test1()
+//{
+//	printf("hehe\n");
+//}
+//void test2()
+//{
+//	printf("hehe\n");
+//	test1();
+//	test1();
+//}
+//int main()
+//{
+//	test1();
+//	test2();
+//	return 0;
+//}//int main()
+//{
+//	int a = 10;
+//	int b = 20;
+//	int sum = add(a, b);
+//	printf("%d", sum);
+//	return 0;
+//}
+//void print(unsigned int a)
+//{
+//	if (a > 9)
+//	{
+//		print(a / 10);         递  归。 确定结束条件，传的值越来越接近那个条件。把大问题 拆解成一个一个类似的问题
+//	}
+//	printf("%d ", a % 10);
+//}
+//int main()
+//{
+//	unsigned int a = 0;
+//	scanf("%u", &a);
+//	print(a);
+//	return 0;
+//}
+//int my_strlen(char* p)       指针接收第一个 地址  是地址
+//{
+//	int count = 0;
+//	while (*p != '\0')                  解 指针  指向
+//	{
+//		count++;              
+//		p++;                        指针下一位
+// }
+//	return count;
+//}
+//int main()
+//{
+//	char arr[] = "adcdef";
+//	int a = my_strlen(arr);       字符传的是第一个元素的地址
+//	printf("%d", a);
+//	return 0;
+//}
+//int _str(char* p)
+//{
+//	if (*p != '\0')
+//	{
+//		return 1 + _str(p + 1);       结束条件   参数变化以及   夹带尾巴的叠加   的 递归。
+//	}
+//	else
+//		return 0;
+//}
+//int main()
+//{
+//	char arr[] = "123456789";
+//	int len = _str(arr);
+//	printf("%d\n", len);
 //	return 0;
 //}
