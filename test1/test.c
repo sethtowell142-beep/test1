@@ -60,7 +60,7 @@
 //	}
 //	return 0;
 //}
-//int Add(int x, int y)  函数不需要；
+//int agg(int x, int y)  函数不需要；
 //{
 //	return (x + y);
 //}
@@ -69,7 +69,7 @@
 //	int n1 = 0;
 //	int n2 = 0;
 //	scanf("%d %d", &n1, &n2);  输入   
-//	int sum = Add(n1, n2);    函数换参
+//	int sum = agg(n1, n2);    函数换参
 //	printf("%d\n", sum);
 //	return 0;
 //}
@@ -118,7 +118,7 @@
 //	}
 //	return 0;
 //}
-//extern int add(int x, int y);
+//extern int acc(int x, int y);
 //
 //int main()
 //{
@@ -172,8 +172,8 @@
 //{
 //	int a = 99;
 //	int b = 1;
-//	int c = ADD(a, b);
-//	int d = add(a, b);
+//	int c = agg(a, b);
+//	int d = agg(a, b);
 //	printf("%d\n", c);
 //	printf("%d\n", d);
 //	return 0;
@@ -923,7 +923,7 @@
 //{
 //	int a = 10;
 //	int b = 20;
-//	int sum = add(a, b);
+//	int sum = agg(a, b);
 //	printf("%d", sum);
 //	return 0;
 //}
@@ -973,5 +973,782 @@
 //	char arr[] = "123456789";
 //	int len = _str(arr);
 //	printf("%d\n", len);
+//	return 0;
+//}
+//int fal(int c)
+//{
+//	if (c <= 1)
+//		return 1;
+//	else
+//		return c * fal(c - 1);
+//
+//}
+//int main()
+//{
+//	int n = 0;
+//	scanf("%d", &n);
+//	int c =fal(n);
+//	printf("%d\n", c);
+//	return 0;
+//}
+//int fib(int n)
+//{
+//	if (n <= 2)
+//		return 1;
+//	else
+//		return fib(n - 1) + fib(n - 2);
+//}
+//int fib(int n)
+//{
+//	int a = 1;
+//	int b = 1;
+//	int c = 0;
+//	while (n > 2)
+//	{
+//		c = a + b;
+//		a = b;
+//		b = c;
+//		n--;
+//	}
+//	return c;
+//}
+//int main()
+//{
+//	int n = 0;
+//	scanf("%d", &n);
+//	int c =fib(n);
+//	printf("%d", c);
+//	return 0;
+//}
+//int d = 0;
+//void quest(int n)
+//{
+//	d++;
+//	
+//	if (n == 1)
+//	{
+//		return;
+//	}
+//	quest(n - 1);
+//	quest(n - 1);
+//}
+//int main()
+//{
+//	int n = 0;
+//	scanf("%d", &n);
+//	quest(n);
+//	printf("%d\n", d);
+//	return 0;
+//}
+//int main()
+//{
+//	int arr[][5] = { 1,2,3,4,5,6,7,8,9,10};      二维数组就是一维数组的数组。
+//	int i = 0;
+//	int j = 0;
+//	for (i = 0; i < 2; i++)
+//	{
+//		for (j = 0; j < 5; j++)
+//		{
+//			scanf("%d", &arr[i][j]);
+//		}
+//	}
+//	i = 0;
+//	j = 0;
+//	for (i = 0; i <5; i++)
+//	{
+//		for (j = 0; j <2; j++)
+//		{
+//			printf("%d ", arr[j][i]);
+//		}
+//		printf("\n");
+//	}
+//	return 0;
+//}
+//int main()
+//{
+//	int arr[2][5] = { {1,2,3,4,5},{6,7,8,9,10} };    生成规定大小
+//	int j = 0;
+//	int  i= 0;
+//	for (i = 0; i < 2; i++)
+//	{
+//		for (j = 0; j < 5; j++)
+//		{
+//			printf("%d ", arr[i][j]);            使用规定位置   直接arr传地址     变长数组是可以自己规定大小的数组，不能初始化。
+//		}
+//		printf("\n");
+//	}
+//	
+//	return 0;
+//}
+//int main()
+//{
+//	int n = 0;
+//	scanf("%d", &n);
+//	arr[n];
+//	int o = 0;
+//	for (o = 0; o < n; o++)
+//	{
+//		arr[o] = o;
+//		printf("%d ", arr[o]);
+//	}
+//	return 0;
+//}
+//int main()
+//{
+//	char arr1[] = "xxxxxxxxx";
+//	char arr2[] = "123456789";
+//	int left = 0;
+//	//int right = (sizeof(arr1) / sizeof(arr1[0]))-2;  //字符串自带\0   sizeof是算大小    字符串长度就是字符数 数到\0之前
+//	int right = strlen(arr1) - 1;
+//	printf("%d\n", right);
+//	while (left <= right)
+//	{
+//		arr1[left] = arr2[left];
+//		arr1[right] = arr2[right];
+//		left++;
+//		right--;
+//		printf("%s\n", arr1);
+//	}
+//	return 0;
+//}
+//void test1(int* pa, int a)
+//{
+//	int c = 0;
+//	for (c = 0; c <= a - 1; c++)
+//	{
+//		(*pa) = -1;
+//		pa=pa + 1;
+//	}
+//}
+//void test2(int * pz,int sz)  // int *pz [5],    arr[][5];
+//{
+//	int i = 0;
+//	while (i <= sz - 1)
+//	{
+//		printf("%d\n", *pz);
+//		i++;
+//		pz = pz + 1;
+//	}
+//}
+//int main()
+//{
+//	int arr[3][5] = { 1,2,3,4,5,6,7,8,9,10,-1,-2 };
+//	int sz = sizeof(arr) / sizeof(arr[0][0]);
+//	//test1(arr, sz);
+//	test2(&arr[0][0], sz);
+//	return 0;
+//}
+//int get_day(int a, int b)
+//{
+//	int arr[20] = { 0,31,28,31,30,31,30,31,31,30,31,30,31 };
+//	if (((a % 4 == 0) && (a % 100 != 0)||(a%400==0)) && b == 2)
+//	{
+//		return 29;
+//	}
+//	else
+//	{
+//		return arr[b];
+//	}
+//}
+//int main()
+//{
+//	int year = 0;
+//	int month = 0;
+//	scanf("%d %d", &year, &month);
+//	int day =get_day(year, month);
+//	printf("%d", day);
+//	return 0;
+//}
+#include <stdbool.h>
+
+//bool test(int a)
+//{
+//	if ((a % 4 == 0) && (a % 100 != 0) || (a % 400 == 0))
+//	{
+//		return true;
+//	}
+//	else
+//		return false;
+//}
+//int main()
+//{
+//	int year = 0;
+//	scanf("%d", &year);
+//	if (test(year))
+//		printf("leap year");
+//	else
+//		printf("err");
+//	return 0;
+//}
+//int agg(int x, int y)
+//{
+//	return x + y;
+//}
+//int main()
+//{
+//	int a = 1;
+//	int c = 2;
+//	int g = agg(a, c);
+//	return 0;
+//}
+//int main()
+//{
+//	int a = 1;
+//	char c = '0';
+//	short d = 2;
+//	int i = 0;
+//	int arr[10] = { 0 };
+//	for (i = 0; i <= 9; i++)
+//	{
+//		arr[i] = i;
+//	}
+//	return 0;
+
+//int fal(int x)
+//{
+//	if (x > 1)
+//	{
+//		int i = 1;
+//		int sum = 1;
+//		for (i = 1; i <= x; i++)
+//		{
+//			sum = sum * i;
+//		}
+//		return fal(x - 1) + sum;
+//	}
+//	else
+//		return 1;
+//}
+//int main()
+//{
+//	int i = 0;
+//	int sum = 1;
+//	int sums = 0;
+//	int g = 10;
+//	for (i = 1; i <= 3; i++)
+//	{
+//		sum = sum * i;
+//		sums = sums +sum;
+//	}
+//	printf("\n%d", sums);
+//	int c = fal(g);
+//	printf("\n%d", c);
+//	return 0;
+//}
+//void test(int a)
+//{
+//	if (a >= 1)
+//	{
+//		test(a / 10);
+//		printf("%d\n", a % 10);
+//	}
+//
+//}
+//int main()
+//{
+//	int a = 1234;
+//	test(a);
+//	return 0;
+//}
+//int main()
+//{
+//	int i = 0;
+//	int arr[10] = { 1,2,3,4,5,6,7,8,9,10 };
+//	for (i = 0; i <= 12; i++)
+//	{
+//		arr[i] = 0;
+//		printf("fool");
+//	}
+//	return 0;
+//}
+//int main()
+//{
+//	printf("%d\n", 022);//  8
+//	printf("%d\n", 0xff);//16
+//	int c = 20;
+//	//00000000000000000000000000010110  原码   第一位0代表正数       无符号全是大小
+//	//00000000000000000000000000010110  反码
+//	//00000000000000000000000000010110  补码
+//	int y = -20;
+//	//10000000000000000000000000010110  原码          第一位1表示负数后面是 大小
+//	//11111111111111111111111111101001 反码     除符号位 取反
+//	//11111111111111111111111111101010  补码   加一     回去 减一取反  或取反加一       内存中存补码进行计算   显示是原码
+//	int d = (c << 1);    //二进制的原因 乘以2的效果 左移左边抛弃右边补0         操作补码
+//	printf("c=%d", c);
+//	printf("\nd=%d", d);
+//	int x = (y >> 1);         //算数右移  左边补了原来的符号  1
+//	printf("\ny=%d", y);
+//	printf("\nx=%d", x);
+//	return 0;
+//}
+//int main()
+//{
+//	int a = 30;                        都是在补码的基础上操作。
+//	int b = 10;
+//	printf("a=%d b=%d\n", a, b);       ^ 异或 相同为0 相异为1  任何数异或0都是本身。异或自己都是0  高阶 不溢出交换 但只能整数
+//	a = a ^ b;
+//	b = a ^ b;
+//	a = a ^ b;
+//	printf("a=%d b=%d\n", a, b);
+//	return 0;
+//}
+//int main()
+//{
+//	int a = 30;
+//	int b = 10;
+//	printf("a=%d b=%d\n", a, b);          存储变量 交换 溢出风险
+//	a = a + b;
+//	b = a - b;
+//	a = a - b;
+//	printf("a=%d b=%d\n", a, b);
+//	return 0;
+//}
+//int main()
+//{
+//	int a = 30;
+//	int b = 10;
+//	int c = a & b;                  &  只要有一个0 就是 0。      10
+//	printf("%d", c);
+//	return 0;
+//}
+//int main()
+//{
+//	int a = 30;
+//	int b = 10;
+//	int c = a | b;                |  只要有一个1 就是1。           30
+//	printf("%d", c);
+//	return 0;
+//}
+//int main()
+//{
+//	int a = 30;
+//	int b = 10;
+//	int c = ~a;              ~ 0变1 1变0。
+//	printf("%d", c);
+//	return 0;
+//}
+//int get_bit_1(int x)
+//{
+//	int c = 0;
+//	int count = 0;
+//	if (x != 0)
+//	{
+//		for (c = 0; c < 32; c++)
+//		{
+//			if (((x >> c) & 1) == 1)
+//			{
+//				count++;
+//			}
+//		}
+//	}
+//	return count;
+//}
+//int get_bit_1(int x)
+//{
+//	if (x != 0)
+//	{
+//		return get_bit_1((x - 1) & x) + 1;      递归思路 扔回去一个表达式，   二进制-1在&原来的就能消除1位数
+//	}
+//	else
+//		return 0;
+//}
+
+//int get_bit_1(int x)
+//{
+//	int c = 0;
+//	while (x)
+//	{
+//		x = x & (x - 1);
+//		c++;
+//	}
+//}
+//int main()
+//{
+//	int n = 0;
+//	scanf("%d", &n);
+//	int c = get_bit_1(n);
+//	printf("%d", c);
+//	return 0;
+//}
+
+//int main()
+//{
+//	int n = 13;
+//	n |= (1 << (5 - 1));
+//	printf("%d\n", n);
+//	n &= ~(1 << (5 - 1));      只要有0就0.  ~全部相反。
+//	printf("%d\n", n);
+//	return 0;
+//}
+//int main()
+//{
+//	int a = 17;
+//	int c = 1;
+//	while (a = ((a-1)&a), a !=0)
+//	{
+//		c++;
+//	}
+//	printf("%d", c);
+//	return 0;
+//}
+//struct stu
+//{
+//	char name[20];
+//	float score;
+//};
+//struct pp
+//{
+//	struct stu pp[10];
+//	int mark;
+//};
+//int main()
+//{
+//	struct stu p1 = { "jack",88.5f };
+//	struct stu p2 = { .score = 99.5f,.name = "mei" };
+//	printf("%s\n", p1.name);
+//	printf("%f\n", p1.score);
+//	printf("%s\n", p2.name);
+//	printf("%f\n", p2.score);
+//	struct pp pc = { {{"bb",77.7f},{"aa",66.6f}},2 };
+//	printf("%s\n", pc.pp[1].name);               0 1 结构体是储存不同变量的数组。  数组是储存统一类型元素的集合。
+//	return 0;                                        结构体嵌套结构体， 创建名字 大小 。   访问位置  也是元素。
+//}
+//int main()
+//{
+//	char a = 20;            cpu运算为int  char接受会被砍掉  补码运算 正数高位补0 负数补1   -116
+//	char b = 120;     
+//	char c = a + b;
+//	printf("%d", c);
+//	return 0;
+//}
+//int main()
+//{
+//	int a = 0;
+//	int* pa = &a;            我思考问题基础不清晰 框架不规范 没有一次只问一个问题。 而且问的模糊，没写出来 。
+//	*pa = 0;                 cpu如何能够找到某个地址。原来是造内存的时候就创建了固定的线，像钢琴一样。   不必记录每一个地址。
+//	printf("%d", a);             取地址 存起来是给 使用者用的，方便再次访问。 地址固定为起始 无论内容是arr也好，char也好。64根线64bit8字节。
+//	return 0;                     32根线32bit4字节。
+//}
+//int main()
+//{
+//	int a = 0x11112233;
+//	int b = a;
+//	int* pa = &a;
+//	char* pb = &b;
+//	*pa = 1;
+//	int c = 0;
+//	for (c = 0; c <= 2; c++);           //类型决定读几位，移动几位。void 空 无法加减 和解
+//	{
+//		*pb = 1;
+//		pb = pb + 1;
+//	}
+//	printf("a=%d\n",a);
+//	printf("b=%d\n",b);
+//	return 0;
+//}
+//int main()
+//{
+//	int arr[10] = { 1,2,3,4,5,6,7,8,9,10 };
+//	int* p = arr;
+//	int c = 0;
+//	for (c = 0; c <= 9; c++)
+//	{
+//		/*printf("%d ", *p);
+//		p = p + 1;*/
+//		printf("%d", *(p + c));
+//	}
+//	return 0;
+//}
+//int main()
+//{
+//	char arr[] = "happy new year";
+//	char* p = &arr[0];
+//	while (*p != '\0')
+//	{
+//		printf("%c", *p);
+//		p++;
+//	}
+//	return 0;
+//}
+//size_t test(char* p)
+//{
+//	/*size_t i = 0;
+//	while (*p != '\0')
+//	{
+//		i++;
+//		p++;
+//	}
+//	return i;*/
+//	char* s = p;
+//	while (*p)
+//	{
+//		p++;
+//	}
+//	return p - s;      '\0'的值是0；指针相减是之间的元素。只能在相同空间。
+//}
+//int main()
+//{
+//	char arr[] = "abcdef";
+//	int c = sizeof(arr) / sizeof(arr[0]) - 1;
+//	printf("%d\n", c);
+//	
+//	printf("%zu\n", test(arr));
+//	return 0;
+//}
+//int main()
+//{
+//	int arr[] = { 1,2,3,4 };
+//	int* p = arr;
+//	while (p < arr + 4)
+//	{
+//		printf("%d ", *p);
+//		p++;
+//	}
+//	return 0;
+//}
+//int main()
+//{
+//	const int a = 10;
+//	const int*  const p = &a;     const放前面锁 解引，无法通过（*p）改变a。放后面锁地址，指针变量不能再指向其他的地方。
+//  const int * p = &a;      p =&b;  ok   (*p) = 20; err           
+//  int * const p = &a;      (*p)= 20;ok    p = &b;err
+//	return 0;
+//}
+//int main()
+//{
+//	int a = 10;
+//	int b = 100;
+//	const int* p = &a;          const就是无法直接通过引用变量改变的意思 比如 a= 20；  但是直接改地址，指向的内容就变了。
+//	printf("a=%d", *p);
+//	p = &b;
+//	printf("\n%d", *p);
+//	return 0;
+//}
+//int* test()
+//{
+//	int n = 100;
+//	return &n;
+//
+//}
+//int main()
+//{
+//	int* p;       野指针 未初始化
+//	int arr[3] = { 1,2,3 };
+//	int* c = arr;
+//	*(c + 3) = 0;           越界访问
+//	int* d = test();         空间已经被释放
+//	int* g = NULL;             NULL拴住野指针 初始化
+//	char arr1[] = "abc";
+//	void* k = arr1;         空接
+//	return 0;
+//}
+//#define NDEBUG
+//#include <assert.h>            不动手不知道，
+//int main()
+//{
+//	int a = 100;
+//	int* pa = &a;
+//	assert(a == 200);
+//	printf("%d", a);
+//	return 0;
+//}
+#define NDEBUG
+#include <assert.h>
+//size_t str(const char* pa)
+//{
+//	size_t count = 0;
+//	assert(pa != NULL);
+//	while (*(pa+count) != '\0')          实现逻辑是指针之间的元素。而不是检查一个写一个。
+//	{
+//		count++;
+//
+//	}
+//	return count;
+//}
+//int main()
+//{
+//	char arr[] = "23786098";
+//	size_t p = str(arr);
+//	printf("%zu", p);
+//	return 0;
+//}
+//void test(int* x, int* y)
+//{
+//	int c = 0;
+//	c = *x;
+//	*x = *y;
+//	*y = c;
+//}
+//int main()
+//{
+//	int a = 10;
+//	int b = 20;
+//	test(&a,&b);
+//	printf("a=%d", a);
+//	printf("b=%d", b);
+//	return 0;
+//}
+//int main()
+//{
+//	int arr[] = { 1,2,3,4 };
+//	printf("%zd\n", sizeof(arr));  16          特殊情况 arr取得是整个数组
+//	printf("%zd\n", sizeof(arr[0]));4
+//	printf("&arr[0]    =%p\n", &arr[0]);
+//	printf("&arr[0]+1  =%p\n", &arr[0]+1);
+//	printf("arr        =%p\n", arr);
+//	printf("arr+1      =%p\n", arr+1);
+//	printf("&arr       =%p\n", &arr);          特殊情况&arr是整个数组。正好有四个元素，又是int类型。+1跳了16字节又是16进制。+2是再第二位加2
+//	printf("&arr+1     =%p\n", &arr+1);                                                         也就是32字节
+//	printf("&arr+2     =%p\n", &arr + 2);
+//
+//	return 0;
+//}
+//int main()
+//{
+//	int arr[10] = { 0 };
+//	int* pa = arr;
+//	int n = sizeof(arr) / sizeof(arr[0]);
+//	int i = 0;
+//	for (i = 0; i < n; i++)
+//	{
+//		//scanf("%d", pa + i);          高雅代码  【】只是一个操作符号，和  +  一样 一个地址，一个下标
+//		//scanf("%d", arr+i);            arr 单独指地址
+//		//scanf("%d", &arr[i]);
+//		//scanf("%d", &pa[i]);
+//
+//		//scanf("%d", &i[arr]);
+//		//scanf("%d", &i[pa]);
+//
+//		//printf("%d\n", *(pa + i));
+//		//printf("%d\n", *(arr+i));
+//		printf("%d\n", arr[i]);
+//
+//	}
+//	
+//	return 0;
+//}
+//void test(int arr[1][3]) (int (*p)[3]) 这不是指针 数组。  是数组指针。。
+//{
+//	int sz1 = sizeof(arr[1]) / sizeof(arr[1][0]); int sz1 = sizeof(*p) / sizeof((*p)[0]);  等价     //二维数组*p相当于打开了一个包裹。
+//	printf("%d\n", sz1);
+//}
+//int main()
+//{
+//	int arr[3] = { 1,2,3 };
+//	int sz = sizeof(arr) / sizeof(arr[0]);
+//	int* p = arr;
+//	printf("%d\n", *p); arr[0]
+//	printf("%d\n", sz);
+//	test(&arr);
+//	return 0;
+//}
+//void bubble_arr(int* p,int sz);
+//int main()
+//{
+//	int arr[10] = { 3,2,5,6,8,9,0,11,32,54 };
+//	int sz = sizeof(arr) / sizeof(arr[0]);
+//	bubble_arr(arr,sz);
+//	int c = 0;
+//	for (c = 0; c < 10; c++)
+//	{
+//		printf("%d ", arr[c]);
+//
+//	}
+//	return 0;
+//}
+//void bubble_arr(int* p,int sz)
+//{
+//	int i = 0;
+//	int count = 0;
+//	int c = 0;
+//	for (i = 0; i < sz; i++)
+//	{
+//		int j = 0;
+//		c = 0;
+//		for (j = 0; j < sz -1- i; j++)
+//		{
+//			if (p[j] > p[j + 1])
+//			{
+//				c = 1;
+//				count++;
+//				p[j] = p[j] ^ p[j + 1];
+//				p[j + 1] = p[j] ^ p[j + 1];            高雅人士 倾情奉献。
+//				p[j] = p[j + 1] ^ p[j];
+//			}
+//		}
+//		if (0 == c)
+//		{
+//			break;
+//		}
+//		
+//	}
+//	printf("\n%d\n", count);
+//}
+//int main()
+//{
+//	int a = 10;
+//	int* pa = &a;
+//	int** ppa = &pa;           二级指针 指针变量的地址。
+//	a = 100;
+//	printf("%d", *(*ppa));   
+//	return 0;
+//}
+//int main()
+//{
+//	int a = 10;
+//	int c = 20;
+//	int d = 30;
+// int * pa = &a;
+// int * pc = &c;
+// int * pd = &d;
+//	int* arr[3] = { &a,&d,&c};       指针 数组  储存指针的数组 。
+//  int* pa[3]   = {&a，&d     等效   指针 数组
+//	return 0;
+//}
+//int main()
+//{
+//	int arr1[] = { 1,2,3 };
+//	int arr2[] = { 3,4,5 };
+//	int arr3[] = { 5,6,7 };
+//	int* arr[] = { arr1,arr2,arr3 };
+//	int i = 0;
+//	for (i = 0; i < 3; i++)
+//	{
+//		int j = 0;
+//		for (j = 0; j < 3; j++)
+//		{
+//			printf("%d ", arr[i][j]);
+//		}
+//		printf("\n");
+//	}
+//	return 0;
+//}
+//int main()
+//{
+//	char arr[] = "abc";      arr特殊状态 创建数组 还是 首元素地址。
+//	const char* pc = "ace";     内容无法修改。  
+//	/* *pc = 'w';  错误 无法被修改 无效
+//	 printf("%c ", *pc);*/
+//	printf("%s ", pc); 等效  直接输入首元素地址
+//	printf("%s ", arr);
+//
+//	return 0;
+//}
+//int main()
+//{
+//	const char* pa = "abc";   是同一个常量字符串 不会重复创建 地址（指针）变量内容指向同一个 ‘a’的地址
+//	const char* pc = "abc";   如果是arr【】可变数组，就arr1 arr2包含的地址就不同。
+//	printf("%p\n", pa);
+//	printf("%p\n", pc);
+//
+//	return 0;
+//}
+//int main()
+//{
+//	int arr[10] = { 0 };
+//	int (*pa)[10] = &arr;
+//	printf("%p ", pa);
+//	printf("%p ", pa+1); 差40
+//
 //	return 0;
 //}
