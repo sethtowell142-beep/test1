@@ -1614,7 +1614,7 @@
 //		//scanf("%d", pa + i);          高雅代码  【】只是一个操作符号，和  +  一样 一个地址，一个下标
 //		//scanf("%d", arr+i);            arr 单独指地址
 //		//scanf("%d", &arr[i]);
-//		//scanf("%d", &pa[i]);
+//		//scanf("%d", &pa[i]);  解地址符号【】 *都他妈是。
 //
 //		//scanf("%d", &i[arr]);
 //		//scanf("%d", &i[pa]);
@@ -1672,7 +1672,7 @@
 //				c = 1;
 //				count++;
 //				p[j] = p[j] ^ p[j + 1];
-//				p[j + 1] = p[j] ^ p[j + 1];            高雅人士 倾情奉献。
+//				p[j + 1] = p[j] ^ p[j + 1];            高雅人士 倾情奉献。  冒泡排序
 //				p[j] = p[j + 1] ^ p[j];
 //			}
 //		}
@@ -1688,7 +1688,7 @@
 //{
 //	int a = 10;
 //	int* pa = &a;
-//	int** ppa = &pa;           二级指针 指针变量的地址。
+//	int** ppa = &pa;           二级指针 指针变量的地址。 第一个* 表明指向的东西 第二个表面其后是指针，
 //	a = 100;
 //	printf("%d", *(*ppa));   
 //	return 0;
@@ -1725,8 +1725,8 @@
 //}
 //int main()
 //{
-//	char arr[] = "abc";      arr特殊状态 创建数组 还是 首元素地址。
-//	const char* pc = "ace";     内容无法修改。  
+//	char arr[] = "abc";      arr特殊状态 创建数组 还是 首元素地址。   字符串数组。
+//	const char* pc = "ace";     内容无法修改。   字符串指针。  指向第一个字符
 //	/* *pc = 'w';  错误 无法被修改 无效
 //	 printf("%c ", *pc);*/
 //	printf("%s ", pc); 等效  直接输入首元素地址
@@ -1745,11 +1745,405 @@
 //}
 //int main()
 //{
-//	int arr[10] = { 0 };
+//	int arr[10] = { 0 };                    
 //	int (*pa)[10] = &arr;
 //	printf("%p ", pa);
 //	printf("%p ", pa+1); 差40
 //
 //	return 0;
 //}
-//test  
+//test   char (*p)[5]  char* (*p)[5]
+//int main()
+//{
+//	int arr[2][3] = {0};
+//	int (*p)[3] = arr;
+//	printf("%zu\n", sizeof(arr));     // 整个数组的大小 24
+//	printf("%zu\n", sizeof(*p));        //第一个大元素的大小 12
+//	printf("%zu\n", sizeof(*p+1));       //参与+-运算 指针退化， 4/8 变成指针的大小
+//	printf("%zu\n", sizeof(*((*p)+1)));      //参与+-运算 指针退化， 解引用 变成单个元素的大小4
+//	printf("%zu\n", sizeof(*(p + 1)));      // 第二个大元素的大小12
+//  //strlen()	在锤子眼里什么都是钉子 传的默认地址 如果传'a' 阿斯克码值是97 传的就是是97的地址  找到'\0'为止。
+//	printf("%zu\n",sizeof(arr[1]));      //12  sizeof内的只有数组名是整个数组。二维数组是一维数组的数组的真正阐释
+//	printf("%zu\n", sizeof( *( & arr[1] + 1)));   //12
+//	printf("%zu\n", sizeof(*arr)); //退化 首元素地址的解引 
+//	printf("%zu\n", sizeof(arr[3]));//12  sizeof并不去真正访问内存 
+//	printf("%zu\n", sizeof(&p+1));      //跳指针 ?
+//	return 0;
+//}
+//void test(int (*p)[3], int x, int y)       数组 指针。
+//{
+//	int i = 0;
+//	for (i = 0; i < x; i++)
+//	{
+//		int j = 0;
+//		for (j = 0; j < y; j++)
+//		{
+//			printf("%d ", *(*(p + i) + j));   指针退化 从第一个数组变成第一个数组第一个元素地址。
+//		}
+//		printf("\n");
+//	}
+//}
+//int main()
+//{
+//	int arr[3][3] = { 1,2,3,4,5,6,7,8,9 };
+//	test(arr, 3, 3);
+//	return 0;
+//}
+//void test()
+//{
+//
+//}
+//int main()
+//{
+//	printf("%p\n", test);  等效 
+//	printf("%p\n", &test);等效果 类似于数组。 p()=(*p)();
+//	void(*p)() = &test;         函数指针 存放函数地址的指针。
+//	printf("%p\n", p);
+//
+//	return 0;
+//}
+//int adda(int x, int y)
+//{
+//	return x + y;
+//}
+//int main()
+//{
+//	int (*p)(int, int) = &adda;
+//	int r = (*p)(10, 20);
+//	printf("%d", r);
+//	return 0;
+//}
+//void test(int x,void(*k)(int,int*))
+//{
+//
+//}
+//typedef int i;
+//typedef unsigned int ui;
+//typedef int (*arp)[10];
+//typedef void (*ppp)(int, void(*)(int, int*));
+//int main()
+//{
+//	int a = 10;
+//	i b= 20;
+//	unsigned int c= 20;
+//	ui d = 20;
+//	int arr[10] = { 0 };
+//	int (*p)[10] = &arr;
+//	arp pa = &a;
+//	void (*pc)(int, void(*)(int, int*)) = test;
+//	ppp pd = test;
+//	//void(*test(int,void(*)()))();函数声明 只有类型 没有具体表示  返回类型是指向返回类型为空的函数的函数指针。
+//	// (*(void (*)())0)()  强制转换类型 类型为 void(*)() 地址为0 的再解地址   函数。
+//	return 0;
+//}
+//int Adddd(int x, int y)           转移表
+//{
+//	return x + y;
+//}
+//int Sub(int x, int y)
+//{
+//	return x - y;
+//}
+//int Mul(int x, int y)
+//{
+//	return x * y;
+//}
+//int Div(int x, int y)
+//{
+//	return x / y;
+//}
+//void Menu()
+//{
+//	printf("*******************\n");
+//	printf("**1.add     2.sub**\n");
+//	printf("**3.mul     4.div**\n");
+//	printf("**0.exit         **\n");
+//	printf("*******************\n");
+//
+//
+//}
+//int main()
+//{
+//	int (*arr[8])(int, int) = { NULL,Adddd,Sub,Mul,Div };    函数指针数组的运用
+//	int input = 0;
+//	int x = 0;
+//	int y = 0;
+//	do
+//	{
+//		Menu();
+//		printf("input\n");
+//		scanf("%d", &input);
+//		if ((input<= 4) && (1 <= input))
+//		{
+//			printf("num1 num2\n");
+//			scanf("%d %d", &x, &y);
+//			int r = arr[input](x, y);           运用 函数*与不*一样的，单独或&都是地址
+//			printf("%d\n", r);
+//		}
+//		else if (input == 0)
+//		{
+//			printf("exit\n");
+//		}
+//		else
+//		{
+//			printf("err\n");
+//		}
+//
+//	} while (input);
+//	return 0;
+//}
+//int Adddd(int x, int y)           
+//{
+//	return x + y;
+//}
+//int Sub(int x, int y)
+//{
+//	return x - y;
+//}
+//int Mul(int x, int y)
+//{
+//	return x * y;
+//}
+//int Div(int x, int y)
+//{
+//	return x / y;
+//}
+//void Menu()
+//{
+//	printf("*******************\n");
+//	printf("**1.add     2.sub**\n");
+//	printf("**3.mul     4.div**\n");
+//	printf("**0.exit         **\n");
+//	printf("*******************\n");
+//}
+//void Calc(int(*pf)(int x, int y)) //用函数指针接收  (int ,int) ？
+//{
+//	int x = 0;
+//	int y = 0;
+//	scanf("%d %d", &x, &y);
+//	int r = pf(x, y); //使用函数
+//	printf("%d\n", r);
+//}
+//int main()
+//{
+//	int input = 0;
+//	do
+//	{
+//		Menu();
+//		scanf("%d", &input);
+//		switch (input)
+//		{
+//		case 1:
+//			Calc(Adddd);  //传函数
+//			break;
+//		case 2:
+//			Calc(Sub);
+//			break;
+//		case 3:
+//			Calc(Mul);
+//			break;
+//		case 4:
+//			Calc(Div);  //回调函数
+//			break;
+//		default:
+//			printf("err\n");
+//			break;
+//		}
+//	} while (input);
+//	return 0;
+//}
+//int cmp_arr(const void* p1, const void* p2)
+//{
+//	return *(int*)p1 - *(int*)p2;
+//	/*if (*(int*)p1 > *(int*)p2)   p1 > p2 return 1 ,>0升序。
+//		return 1;
+//	else if (*(int*)p1 < *(int*)p2)
+//		return -1;
+//	else
+//		return 0;*/
+//	/*if (*(int*)p1 < *(int*)p2)             降序。
+//		return 1;
+//	else if (*(int*)p1 > *(int*)p2)
+//		return -1;
+//	else
+//		return 0;*/
+//}
+//void print(int* p, int sz)
+//{
+//	int i = 0;
+//	for (i = 0; i < sz; i++)
+//	{
+//		printf("%d ", p[i]);
+//	}
+//	printf("\n");
+//}
+//struct stu
+//{
+//	char name[20];
+//	int age;
+//};
+//int cmp_stu_name(const void* p1, const void* p2)
+//{
+//	return strcmp(((struct stu*)p1)->name, ((struct stu*)p2)->name);
+//}
+//void print_stu(struct stu* p, int c)
+//{
+//	int d = 0;
+//	for (d = 0; d < c; d++)
+//	{
+//		printf("%s %d", (p + d)->name, (p + d)->age);
+//		printf("\n");
+//	}
+//}
+//int cmp_stu_age(const void* p1, const void* p2)
+//{
+//	return ((struct stu*)p2)->age - ((struct stu*)p1)->age;
+//}
+//void test()
+//{
+//	struct stu arr[3] = { {"sa",14},{"meimei",16},{"gg",18} };
+//	int sz = sizeof(arr) / sizeof(arr[0]);
+//	print_stu(arr, sz);
+//	qsort(arr, sz, sizeof(arr[0]), cmp_stu_name);
+//	print_stu(arr, sz);
+//	qsort(arr, sz, sizeof(arr[0]), cmp_stu_age);
+//	print_stu(arr, sz);
+//}
+//int main()
+//{
+//	int arr[] = { 5,6,4,8,2,78,9,10,34 };
+//	int sz = sizeof(arr) / sizeof(arr[0]);
+//	print(arr, sz);
+//	qsort(arr, sz, sizeof(arr[0]), cmp_arr);
+//	print(arr, sz);
+//	
+//	test();
+//	return 0;
+//}
+
+//void print(int*, int);
+//void swap(char* p1, char* p2, int c)   char*接受 不需要繁杂的转换。
+//{
+//	int i = 0;
+//	for (i = 0; i < c; i++)
+//	{
+//		char tem = 0;             换内容
+//		tem = (*p1);
+//		(*p1) = (*p2);
+//		(*p2) = tem;
+//		p1++;
+//		p2++;
+//	}
+//}
+//int cmp_ia(const void* p1, const void* p2)       特定比大小函数 回调函数
+//{
+//	return (*((int*)p1)) - (*((int*)p2));
+//}
+//void bubble_qsort(void* base, size_t num, size_t sz, int(*p)(const void*, const void*)) 冒泡排序的qsort模拟实现 函数指针必须有返回值
+//{                                                        回调函数  ，输入什么函数，就怎么比较
+//	int i = 0;
+//	for (i = 0; i < num; i++)
+//	{
+//		int j = 0;
+//		for (j = 0; j < num - 1 - i; j++)
+//		{
+//			if (p((char*)base+j*sz,(char*)base+(j+1)*sz)>0)        大小基本单位是字节 char 强制转化，+偏移
+//			{
+//				swap((char*)base + j * sz, (char*)base + (j + 1) * sz,sz);        扔进去 char* 一个单位一个单位换。
+//			}
+//		}
+//	}
+//
+//}
+//void test()
+//{
+//	int arr[10] = { 3,5,7,8,3,5,7,11,13,10 };
+//	int num = sizeof(arr) / sizeof(arr[0]);
+//	print(arr, num);
+//	bubble_qsort(arr,num,sizeof(arr[0]),cmp_ia);  回调函数
+//	print(arr, num);
+//
+//}
+//void print(int* p, int sz)
+//{
+//	int i = 0;
+//	for (i = 0; i < sz; i++)
+//	{
+//		printf("%d ", p[i]);
+//	}
+//	printf("\n");
+//}
+//int main()
+//{
+//	test();
+//	return 0;
+//}
+//int main()
+//{
+//	char arr[] = "abcdef";
+//	printf("%zu\n", sizeof(arr));   在sizeof(arr)中  单独arr 指整个数组       7 '\0'
+//	printf("%zu\n", sizeof(arr+0));             首元素地址             4/8
+//
+//	printf("%zu\n", sizeof(&arr));     &arr 是arr整个数组的地址，+1跳全部数组 使用 char（*p）【7】接受      4/8
+//
+//	return 0;
+//}
+//int main()
+//{
+//	int arr[] = { 1,2,3,4,5 };
+//	int* p = (int*)(&arr + 1);  (int*)强制转换 int(*)[5]
+//	printf("%d,%d", *(arr + 1), *(p - 1));
+//	return 0;
+//}
+//int main()
+//{
+//	int a = 0;
+//	int* p = &a;
+//	printf("%p\n", p);
+//	printf("%p\n", (unsigned long)p+0x1);     printf %p只负责打印出来的格式16进制。这里已经被转化成普通整数加减了。
+//
+//	return 0;
+//}
+//int main()
+//{
+//	int arr[] = { 1,2,3,4,5 };
+//	int* p = arr;
+//	int c = (p + 4) - (p + 1);  地址减去地址是中间元素个数。 日期减去日期是天数 。相加没有意义。
+//	printf("%d", c);
+//	return 0;
+//}
+#include <ctype.h>	
+//int main()
+//{
+//	char arr[20] = "i am chinese";
+//	int i = 0;
+//	while (arr[i])
+//	{
+//		if (islower(arr[i]))
+//			//arr[i] -= 32;
+//			arr[i] = toupper(arr[i]);
+//		printf("%c", arr[i]);
+//		i++;
+//	}
+//
+//	return 0;
+//}
+//int main()
+//{
+//	if (strlen("acb") - strlen("abcd") > 0)  无符号整形在补码阶段 没有符号位 变成非常大的数字。
+//		printf(">");
+//	else
+//		printf("<=");
+//	return 0;
+//}
+//void test()
+//{
+//	printf("hehe");
+//	printf("hehe");
+//
+//}
+//int main()
+//{
+//	test();
+//	return 0;
+//}

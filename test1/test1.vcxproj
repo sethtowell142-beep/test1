@@ -127,7 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="add.c" />
+    <ClCompile Include="homework.c" />
     <ClCompile Include="test.c" />
     <ClCompile Include="test2.c" />
   </ItemGroup>
