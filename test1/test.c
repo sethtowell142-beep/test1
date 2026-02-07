@@ -1765,7 +1765,7 @@
 //  //strlen()	在锤子眼里什么都是钉子 传的默认地址 如果传'a' 阿斯克码值是97 传的就是是97的地址  找到'\0'为止。
 //	printf("%zu\n",sizeof(arr[1]));      //12  sizeof内的只有数组名是整个数组。二维数组是一维数组的数组的真正阐释
 //	printf("%zu\n", sizeof( *( & arr[1] + 1)));   //12
-//	printf("%zu\n", sizeof(*arr)); //退化 首元素地址的解引 
+//	printf("%zu\n", sizeof(*arr)); // 12  退化 首元素地址的解引 
 //	printf("%zu\n", sizeof(arr[3]));//12  sizeof并不去真正访问内存 
 //	printf("%zu\n", sizeof(&p+1));      //跳指针 ?
 //	return 0;
@@ -1836,7 +1836,7 @@
 //	// (*(void (*)())0)()  强制转换类型 类型为 void(*)() 地址为0 的再解地址   函数。
 //	return 0;
 //}
-//int Adddd(int x, int y)           转移表
+//int Adddd(int x, int y)           //转移表
 //{
 //	return x + y;
 //}
@@ -1864,7 +1864,7 @@
 //}
 //int main()
 //{
-//	int (*arr[8])(int, int) = { NULL,Adddd,Sub,Mul,Div };    函数指针数组的运用
+//	int (*arr[8])(int, int) = { NULL,Adddd,Sub,Mul,Div };    //函数指针数组的运用
 //	int input = 0;
 //	int x = 0;
 //	int y = 0;
@@ -1877,7 +1877,7 @@
 //		{
 //			printf("num1 num2\n");
 //			scanf("%d %d", &x, &y);
-//			int r = arr[input](x, y);           运用 函数*与不*一样的，单独或&都是地址
+//			int r = arr[input](x, y);           //运用 函数*与不*一样的，单独或&都是地址
 //			printf("%d\n", r);
 //		}
 //		else if (input == 0)
@@ -2130,7 +2130,7 @@
 //}
 //int main()
 //{
-//	if (strlen("acb") - strlen("abcd") > 0)  无符号整形在补码阶段 没有符号位 变成非常大的数字。
+//	if (strlen("acb") - strlen("abcd") > 0)  //无符号整形在补码阶段 没有符号位 变成非常大的数字。一个时钟 向后退4步
 //		printf(">");
 //	else
 //		printf("<=");
@@ -2147,3 +2147,444 @@
 //	test();
 //	return 0;
 //}
+//size_t my_str(const char* p)         递归模拟strlen
+//{
+//	if (*p != '\0')
+//		return 1 + my_str(p + 1);
+//	else
+//		return 0;
+//}
+//int main()
+//{
+//	char arr[20] = "abcdef";
+//	size_t r =	my_str(arr);
+//	printf("%zu", r);
+//	return 0;
+//}
+//char* my_strcpy(char* dest, const char* source)
+//{
+//	assert(dest && source);
+//	char* start = dest;
+//	while (*dest++ = *source++)
+//	{
+//		;
+//	}
+//	return start;
+//}
+//int main()
+//{
+//	char arr[] = "fuck world";
+//	char arr1[30] = { 0 };
+//	char* s = my_strcpy(arr1, arr);
+//	printf("%s\n", arr1);
+//	printf("%s\n", s);
+//
+//	return 0;
+//}
+//char* my_strcpy(char* dest, char* source)
+//{
+//	assert(dest && source);
+//	char* start = dest;
+//	while (*dest != '\0')
+//	{
+//		dest++;
+//	}
+//	while (*dest++ = *source++)
+//	{
+//		;
+//	}
+//	return start;
+//}
+//int main()
+//{
+//	char arr[30] = "return";
+//	char arr1[] = " 0";
+//	printf("%s\n", my_strcpy(arr, arr1));
+//	printf("%s\n", arr);
+//	return 0;
+//}
+//int my_strcmp(const char* p1, const char* p2)
+//{
+//	assert(p1 && p2);
+//	while (*p1 == *p2)
+//	{
+//		if (*p1 == '\0')
+//			return 0;
+//		p1++;
+//		p2++;
+//	}
+//	if (*p1 > *p2)
+//		return 1;
+//	else
+//		return -1;
+//}
+//int main()
+//{
+//	char arr1[20] = "abcdf";
+//	char arr2[20] = "abcd";
+//	int r =my_strcmp(arr1, arr2);
+//	printf("%d", r);
+//	return 0;
+//}
+//int main()
+//{
+//	char arr1[20] = "ab\0abc";              
+//	char arr2[20] = "xxxxxxxxxx";
+//	strncpy(arr2, arr1, 7);          读到斜杠0补满斜杠0
+//	return 0;
+//}
+//int main()
+//{
+//	char arr1[20] = "ab\0abc";
+//	char arr2[20] = "xxx\0xxxxxxx";  只补一个斜杠0 拼接在斜杠0之后
+//	strncat(arr2, arr1, 7);
+//	return 0;
+//}
+//int main()
+//{
+//	char arr1[20] = "ab\0abc";
+//	char arr2[20] = "abc";
+//	int r =strncmp(arr2, arr1, 2);   //0   比较几个。
+//	return 0;
+//}
+//char* my_strstr(const char* p1, const char* p2)
+//{
+//	assert(p1 && p2);
+//	if (*p2 == '\0')
+//		return (char*)p1;
+//	const char* p = p1;
+//	const char* s1 = p1;
+//	const char* s2 = p2;
+//	while (*p)
+//	{
+//		s2 = p2;
+//		s1 = p;
+//		while (*s1 && *s2 && *s1 == *s2)
+//		{
+//			s1++;
+//			s2++;
+//		}
+//		if (*s2 == '\0')
+//			return (char*)p;
+//		p++;
+//	}
+//	return NULL;
+//}
+//int main()
+//{
+//	char arr1[20] = "abbbbcdd";
+//	char arr2[20] = "bbc";
+//	char* r = my_strstr(arr1, arr2);
+//	printf("%s", r);
+//	return 0;
+//}
+//int recay(int next[],int j)              kmp类似与递归
+//{
+//	if (j==0)
+//		return 0;
+//	
+//	else
+//		return next[j-1];
+//	
+//}
+//void next(char arr[],int next1[])
+//{
+//	int j = 0;
+//	int i = 1;
+//	
+//	next1[j] = 0;
+//
+//	while (arr[i]!='\0')
+//	{
+//		if (arr[i] == arr[j])
+//		{
+//			next1[i] = j + 1;
+//			i++;
+//			j++;
+//		}
+//		else if(j>0)
+//		{
+//			j = recay(next1,j);
+//		}
+//		else
+//		{
+//			next1[i] = 0;
+//			i++;
+//		}
+//}
+//
+//
+//
+//}
+//int next_next(char arr1[], char arr2[], int next1[])
+//{
+//	int i = 0;
+//	int j = 0;
+//	while (arr1[i] != '\0')
+//	{
+//
+//		if (arr1[i] == arr2[j])
+//		{
+//			i++;
+//			j++;
+//			if (arr2[j] == '\0')
+//				return 1;
+//
+//		}
+//		else if (j > 0)
+//		{
+//			j = recay(next1, j);
+//		}
+//		else
+//		{
+//			i++;
+//		}
+//
+//	}
+//	return 0;
+//
+//}
+//int my_kmp(char arr1[], char arr2[],int next1[]	)
+//{
+//	next(arr2,next1);
+//	int r =next_next(arr1, arr2, next1);
+//	return r;
+//}
+//int main()
+//{
+//	char arr1[20] = "bbbbbc";
+//	char arr2[20] = "bbc";
+//	int next1[20] = { 0 };
+//
+//	int ret=my_kmp(arr1, arr2,next1);
+//	printf("%d", ret);
+//	return 0;
+//}
+
+
+
+//void build_next(char pat[], int next[],int len)   //构建内部地图 当与主串不同时，只需返回。
+//{
+//	int j = 0;
+//	next[j] = 0;
+//	int i = 1;
+//	for (i = 1; i < len; i++)
+//	{
+//		while (j > 0 && pat[j] != pat[i])         // 数组从0开始。当长度是1，之间带入数组是没有问题的
+//		{
+//			j = next[j - 1];                       //  回溯。
+//		}
+//		if (pat[j] == pat[i])
+//		{
+//			j++;                                     //这是一半的长度，两个指针一起移动，只加1.
+//		}
+//		next[i] = j;        //小心一直不等于  长度+1；
+//	}
+//}
+//int kmp(char str[], char pat[], int len,int next[])
+//{
+//	int i = 0;
+//	int j = 0;
+//	for (i = 0; i < len; i++)
+//	{
+//		while (j > 0 && str[i] != pat[j])
+//		{
+//			j = next[j - 1];
+//		}
+//		if (str[i] == pat[j])
+//		{
+//			j++;
+//			if (pat[j] == '\0')         //小心 如果主串太长传不进去就无法判断，应该在++之后判断。  kmp
+//				return 1;
+//		}
+//	}
+//	return 0;
+//}
+//int main()
+//{
+//	char str[100] = "abbbcdhasacbabc";
+//	char pat[20] = "abc";
+//	int patlen = strlen(pat);
+//	int next[999] = { 0 };
+//	int strlen1 = strlen(str);
+//	build_next(pat, next,patlen);
+//	int ret =kmp(str, pat,strlen1,next);
+//	printf("%d", ret);
+//	return 0;
+//}
+//int main()
+//{
+//	char arr1[] = "abc@@cdb..nnb";
+//	char copy[100] = { 0 };
+//	strcpy(copy, arr1);
+//	char str[] = "@.";
+//	char* p = NULL;
+//	for (p = strtok(copy, str); p != NULL; p = strtok(NULL, str))
+//	{
+//		printf("%s\n", p);
+//	}
+//	return 0;
+//}
+//int main()
+//{
+//	int ret = system("D:\\SteamLibrary\\steamapps\\common\\SenrenBanka\\SenrenBanka.exe");
+//	return 0;
+//}
+//int main()
+//{
+//	FILE* pf = fopen("dota.txt", "r");
+//	if (pf == NULL)
+//	{
+//		printf("%s\n", strerror(errno));
+//		perror("error");                     ==  2435 
+//		return 1;
+//	}
+//	fclose(pf);
+//	return 0;
+//}
+
+//void* my_memcpy(void* dest, const void* src, size_t num)
+//{
+//	assert(dest && src);
+//	void* ret = dest;
+//	while (num--)
+//	{
+//		*(char*)dest = *(char*)src;
+//		dest = (char*)dest + 1;
+//		src = (char*)src + 1;
+//	}
+//	return ret;
+//}
+//int main()
+//{
+//	int arr1[] = { 1,2,3,4,5,6,7,8 };
+//	int arr2[20] = { 0 };
+//	//memcpy(arr2, arr1, 8 * sizeof(int));
+//	my_memcpy(arr2, arr1, 8 * sizeof(int));
+//	int i = 0;
+//	for (i = 0; i < 8; i++)
+//	{
+//		printf("%d ", arr2[i]);
+//	}
+//	return 0;
+//}
+
+
+//void* my_memmove(void* dest, const void* src, size_t num)
+//{
+//	assert(dest && src);
+//	void* ret = dest;
+//	if (dest < src)
+//	{
+//		while (num--)
+//		{
+//			*(char*)dest = *(char*)src;
+//			dest = (char*)dest + 1;
+//			src = (char*)src + 1;
+//		}
+//	}
+//	else
+//	{
+//		while (num--)                    //下标是从0开始的。 先使用在--  4正好使用4次。
+//		{
+//			*((char*)dest + num) = *((char*)src + num);
+//
+//		}
+//	}
+//	return ret;
+//}
+//int main()
+//{
+//	int arr[] = { 1,2,3,4,5,6,7,8,9 };
+//	/*memmove(arr, arr + 2, 20);*/
+//	my_memmove(arr, arr + 2, 20);
+//	return 0;
+//}
+
+
+
+//int main()
+//{
+//	char arr[] = "hello";     //以字节为单位。
+//	memset(arr + 2, 'x', 2);
+//	printf("%s", arr);
+//	return 0;
+//}
+
+
+
+//int main()
+//{
+//	int arr1[] = { 1,1 };
+//	int arr2[] = { 1,4097};      //返回0；
+//	int r = memcmp(arr1, arr2, 5);
+//	printf("%d", r);
+//	return 0;
+//}
+
+
+//int main()
+//{
+//	int i = 1;
+//	if (*(char*)&i)
+//		printf("小端字节序");    //低位数排在低地址   01 00 00 00       从低地址到高地址顺序
+//	else
+//		printf("大端字节序");     //低位数排在高地址   00 00 00 01
+//	return 0;
+//}
+
+
+
+//int main()
+//{
+//	char a = -1;
+//	//   = 是赋予 把一个值赋予给另一个
+//	//   10000000 00000000 00000000 00000001
+//	//   11111111 11111111 11111111 11111110
+//	//   11111111 11111111 11111111 11111111
+//	//                              11111111  -a  取低位
+//	//   11111111 11111111 11111111 11111111  整形提升，有符号补符号位    %d认为是有符号整形
+//	//   10000000 00000000 00000000 00000000
+//	//   10000000 00000000 00000000 00000001
+//	unsigned char c = -1;
+//	//   10000000 00000000 00000000 00000001
+//	//   11111111 11111111 11111111 11111110
+//	//   11111111 11111111 11111111 11111111
+//	//                              11111111  -c  取低位
+//	//   0000000  0000000  00000000 11111111  整形提升   unsigned默认符号位为0.  %d认为是有符号整形
+//	//   0000000  0000000  00000000 11111111
+//	//   0000000  0000000  00000000 11111111  
+//	printf("a=%d c=%d",a,c);  //-1  255
+//	return 0;
+//}
+
+
+
+
+//int main()
+//{
+//	char a = -128;
+//	//10000000 00000000 00000000 10000000
+//	//11111111 11111111 11111111 01111111
+//	//11111111 11111111 11111111 10000000
+//	//10000000 -a
+//	//11111111 11111111 11111111 10000000 整形提升  根据   变量   a    的符号位提升   %u认为是无符号整形 打印无符号整数
+//	printf("%u", a);
+//	return 0;
+//}
+
+
+//int main()
+//{
+//	char a = 128;
+//	//00000000 00000000 00000000 10000000
+//	//00000000 00000000 00000000 10000000
+//	//00000000 00000000 00000000 10000000
+//	//10000000 -a
+//	//11111111 11111111 11111111 10000000   整形提升  根据   变量   a    的符号位提升   %u认为是无符号整形 打印无符号整数
+//	printf("%u", a);
+//	return 0;
+//}
+
+
+

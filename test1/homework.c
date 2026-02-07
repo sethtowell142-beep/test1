@@ -1,6 +1,7 @@
 #define _CRT_SECURE_NO_WARNINGS 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 //int add(int x, int y)
 //{
 //	return x + y;
@@ -720,5 +721,408 @@
 //	b = a ^ b;
 //	a = a ^ b;
 //	printf("%d %d", a, b);
+//	return 0;
+//}
+//int main()
+//{
+//	int n = 0;
+//	scanf("%d", &n);
+//		int c = 0;
+//		while (n != 0)
+//		{
+//			n = ((n - 1) & n);
+//			c++;
+//
+//		}
+//		printf("%d", c);
+//	return 0;
+//}
+//int main()
+//{
+//	int n = 0;
+//	scanf("%d", &n);
+//	int d = n;
+//	int c = 0;
+//	for (c=0;c<16;c++)
+//	{
+//		printf("%d ", n & 1);
+//		n >>= 2;
+//	}
+//	d >>= 1;
+//	printf("\n");
+//	for (c = 0; c < 16; c++)
+//	{
+//		printf("%d ", d & 1);
+//		d >>= 2;
+//	}
+//	return 0;
+//}
+//int main()
+//{
+//	int arr[10] = { 1,2,3,4,5,1,2,3,4,6 };          //单身狗数
+//	int i = 0;
+//	int j = 0;
+//	for (i = 0; i < 10; i++)
+//	{
+//		int count = 0;
+//		for (j = 0; j < 10; j++)
+//		{
+//			if (arr[i] == arr[j])
+//			{
+//				count++;
+//			}
+//		}
+//		if (count == 1)
+//		{
+//			printf("%d ", arr[i]);
+//		}
+//	}
+	//int c = 0;
+	//int ret = 0;
+	//for (c = 0; c < 9; c++)           
+	//{
+	//	ret = ret ^ arr[c];            //单身狗数优化。任何数^本身都是0。 0^任何数都是任何数。
+	//}
+	//printf("%d", ret);
+//	return 0;
+//}
+//int main()
+//{
+//	int n = 0;
+//	int m = 0;
+//	scanf("%d %d", &n, &m);
+//	int c = m ^ n;           有多少个不同 ^ 变成1再算多少个1。
+//	int count = 0;
+//	while (c != 0)
+//	{
+//		c = (c - 1) & c;
+//		count++;
+//	}
+//	printf("%d", count);
+//	return 0;
+//}
+//size_t my_strlen(const char* p)
+//{
+//	/*size_t count = 0;
+//	while (*p != '\0')
+//	{
+//		p = p + 1;
+//		count++;
+//	}
+//	return count;*/
+//	const char* start = p;
+//	while (*p)
+//		p++;
+//	return p - start;
+//}
+//int main()
+//{
+//	char arr[20] = "jdskfwe";
+//	size_t g  = my_strlen(arr);
+//	printf("%zu", g);
+//	return 0;
+//}
+//void left_arr(char* p, int k,int sz	)
+//{
+//	int g = 0;
+//	for (g = 0; g < k; g++)
+//	{
+//		p[sz] = p[0];
+//		int i = 0;
+//		for (i = 1; i <= sz; i++)
+//		{
+//			p[i - 1] = p[i];
+//		}
+//	}
+//	for (g = 0; g < sz; g++)
+//	{
+//		printf("%c", p[g]);
+//	}
+//}
+//int main()
+//{
+//	char arr[20] = "ABCD";
+//	int k = 0;
+//	int sz = sizeof(arr) / sizeof(arr[0]) - 1;
+//	scanf("%d", &k);
+//	left_arr(arr, k,sz);
+//	return 0;
+//}
+//int main()
+//{
+//	char str[100] = { 0 };
+//	int c = 0;
+//	int ch = 0;
+//	while (((ch = getchar()) != EOF) && (ch != '\n')&&c<99)
+//	{
+//		str[c] = ch;
+//		c++;
+//	}
+//	c--;
+//	while (c >= 0)
+//	{
+//		printf("%c", str[c]);
+//		c--;
+//	}
+//	return 0;
+//}
+//void odd_even_number(int* p, int x)
+//{
+//	int left = 0;
+//	int right = x - 1;
+//	while (left < right)
+//	{
+//		if ((p[left] % 2) == 0)
+//		{
+//			int tmp = 0;
+//			tmp = p[left];
+//			p[left] = p[right];
+//			p[right] = tmp;
+//			right--;
+//		}
+//		else
+//		{
+//			left++;
+//		}
+//	}
+//}
+//int main()
+//{
+//	int arr[10] = { 1,2,3,4,5,6,7,8,9,10 };
+//	int sz = sizeof(arr) / sizeof(arr[0]);
+//	odd_even_number(arr, sz);
+//	int c = 0;
+//	for (c = 0; c < sz; c++)
+//	{
+//		printf("%d ", arr[c]);
+//	}
+//	return 0;
+//}
+//int main()
+//{
+//	int arr[10] = { 1,2,3,4,5,6,7,8,9,10 };
+//	int sz = sizeof(arr) / sizeof(arr[0]);
+//	int* p = arr;
+//	int c = 0;
+//	for (c = 0; c < sz; c++)
+//	{
+//		printf("%d ", *(p + c));
+//	}
+//	return 0;
+//}
+//void bubble_sort(int* p, int x)
+//{
+//	int i = 0;
+//	int j = 0;
+//	for (i = 0; i < x - 1; i++)
+//	{
+//		for (j = 0; j < x - 1 - i; j++)
+//		{
+//			if (p[j] > p[j + 1])
+//			{
+//				int tmp = 0;
+//				tmp = p[j];
+//				p[j] = p[j + 1];
+//				p[j + 1] = tmp;
+//			}
+//		}
+//	}
+//}
+//int main()
+//{
+//	int arr[10] = { 10,9,8,7,6,5,4,3,2,1 };
+//	int sz = sizeof(arr) / sizeof(arr[0]);
+//	bubble_sort(arr, sz);
+//		int c = 0;
+//	for (c = 0; c < sz; c++)
+//	{
+//		printf("%d ", arr[c]);
+//	}
+//	return 0;
+//}
+//void triangle(int(*p)[10], int x)    杨辉三角
+//{
+//	int i = 0;
+//	int j = 0;
+//	for (i = 1; i <= x; i++)
+//	{
+//		for (j = 1; j <= i; j++)
+//		{
+//			if (j == 1 || j == i)
+//			{
+//				*(*(p + i - 1) + j - 1) = 1;
+//			}
+//			else
+//			{
+//				*(*(p + i - 1) + j - 1) = *(*(p + i - 1-1) + j - 1-1)+ *(*(p + i - 1-1) + j - 1);
+//			}
+//			printf("%d ", *(*(p + i - 1) + j - 1));
+//		}
+//		printf("\n");
+//	}
+//}
+//int main()
+//{
+//	int arr[10][10] = { 0 };
+//	int sz = sizeof(arr[1]) / sizeof(arr[0][0]);//数组名是整个数组。
+//	//printf("%d", sz);
+//	triangle(arr,sz);
+//	return 0;
+//}
+//void test(int (*p)[10])
+//{
+//	int c = *(*(p + 1) + 1);
+//}
+//int main()
+//{
+//	int arr[10][10] = { 0 };
+//	test(arr);
+//	test(&arr[0]);
+//	return 0;
+//}
+//void read(char arr[], int k)
+//{
+//	int ch = 0;
+//	int c = 0;
+//	while (((ch = getchar()) != '\n') && ch != EOF && c < k)       getchar先抓取，再判断
+//	{
+//		arr[c] = ch;
+//		c++;
+//	}
+//	arr[c] = '\0';
+//}
+//int cmp_arr(char* p1, char* p2)
+//{
+//	int c = 0;
+//	while (*(p1 + c) != '\0')
+//	{
+//		if ((*(p1 + c)) != (*(p2 + c)))
+//		{
+//			return 0;
+//		}
+//		c++;
+//	}
+//	return 1;
+//}
+//char* left_round(char arr1[],int k)    左旋字符串
+//{
+//	char arr3[100] = { 0 };
+//	strcpy(arr3, arr1 + k);
+//	strncat(arr3, arr1, k);
+//	strcpy(arr1, arr3);
+//	return arr1;
+//
+//}
+//int fin(char arr1[], char arr2[])
+//{
+//	if (cmp_arr(left_round(arr1, 2), arr2) || cmp_arr(left_round(arr2, 2), arr1))
+//		return 1;
+//	else
+//		return 0;
+//}
+//int main()
+//{
+//	char arr1[100] = { 0 };
+//	char arr2[100] = { 0 };
+//	read(arr1, 100);
+//	read(arr2, 100);
+//	//printf("%s\n", arr1);
+//	//printf("%s\n", arr2);
+//	//left_round(arr1, 3);
+//	//printf("%s\n", arr1);
+//	int recall = fin(arr1, arr2);
+//	printf("%d ", recall);
+//	return 0;
+//}
+//char* find(char arr1[], char arr2[])
+//{
+//	char tme[999] = { 0 };
+//	strcpy(tme, arr1);
+//	strcat(tme, arr1);                    左旋 拼接两次必有元素
+//	return strstr(tme, arr2);       库函数 看tme有没有arr2
+//}
+//int main()
+//{
+//	char arr1[] = "ABCDEF";
+//	char arr2[] = "CDEFAB";
+//	char* ret = find(arr1, arr2);
+//	if (ret != NULL)
+//	{
+//		printf("find_it");
+//	}
+//	else
+//		printf("do not find_it");
+//
+//	return 0;
+//}
+//int main()
+//{
+//	char killer = 'a';
+//	for (killer = 'c'; killer <= 'd'; killer++)   阿斯克码
+//	{
+//		if ((killer != 'a') + (killer == 'c')+(killer == 'd') + (killer != 'd') == 3)
+//			printf("%c", killer);
+//	}
+//	return 0;
+//}
+//int day_(int y, int m)
+//{
+//	int arr[20] = { 0,31,28,31,30,31,30,31,31,30,31,30,31 };
+//	if (((y % 4 == 0) && (y % 100 != 0)) || (y % 400 == 0))
+//	{
+//		if (m == 2)
+//		{
+//			return arr[m] + 1;
+//		}
+//		return arr[m];
+//	}
+//	else
+//		return arr[m];
+//	
+//}
+//int main()
+//{
+//	int year = 0;
+//	int month = 0;
+//	scanf("%d %d", &year, &month);
+//	int ret = day_(year, month);
+//	printf("%d", ret);
+//	return 0;
+//}
+//void find_signle(int arr[], int* p1, int* p2, int len)        单身狗2 先确定不同 然后位置在哪，再分类 只是用 2个不同。
+//{
+//	int tem = 0;
+//	int i = 0;
+//	for (i = 0; i < len; i++)
+//	{
+//		tem ^= arr[i];
+//	}
+//	int pos = 0;
+//	for (i = 0; i < 32; i++)
+//	{
+//		if (((tem >> 1) & 1) == 1)
+//		{
+//			pos = i;
+//			break;
+//		}
+//	}
+//	for (i = 0; i < len; i++)
+//	{
+//		if (((arr[i] >> pos) & 1) == 1)
+//		{
+//			*p1 ^= arr[i];
+//		}
+//		else
+//			*p2 ^= arr[i];
+//	}
+//}
+//int main()
+//{
+//	int arr[20] = { 1,2,3,4,5,1,2,3,4,6 };
+//	int num1 = 0;
+//	int num2 = 0;
+//	int sz = sizeof(arr) / sizeof(arr[0]);
+//	find_signle(arr, &num1, &num2, sz);
+//	printf("%d %d", num1, num2);
 //	return 0;
 //}
