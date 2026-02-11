@@ -2181,7 +2181,7 @@
 //
 //	return 0;
 //}
-//char* my_strcpy(char* dest, char* source)
+//char* my_strcat(char* dest, char* source)
 //{
 //	assert(dest && source);
 //	char* start = dest;
@@ -2198,9 +2198,9 @@
 //int main()
 //{
 //	char arr[30] = "return";
-//	char arr1[] = " 0";
-//	printf("%s\n", my_strcpy(arr, arr1));
-//	printf("%s\n", arr);
+//	char arr1[30] = " 1";
+//	printf("%s\n", my_strcat(arr1, arr));
+//	printf("%s\n", arr1);
 //	return 0;
 //}
 //int my_strcmp(const char* p1, const char* p2)
@@ -2278,6 +2278,9 @@
 //	printf("%s", r);
 //	return 0;
 //}
+
+
+
 //int recay(int next[],int j)              kmp类似与递归
 //{
 //	if (j==0)
@@ -2412,6 +2415,8 @@
 //	printf("%d", ret);
 //	return 0;
 //}
+
+
 //int main()
 //{
 //	char arr1[] = "abc@@cdb..nnb";
@@ -2583,6 +2588,236 @@
 //	//10000000 -a
 //	//11111111 11111111 11111111 10000000   整形提升  根据   变量   a    的符号位提升   %u认为是无符号整形 打印无符号整数
 //	printf("%u", a);
+//	return 0;
+//}
+
+
+
+//int main()
+//{
+//	float a = 9.5f;
+//	// (-1)^0*1001.1 =(-1)^0 *1.0011*2^3
+//	//s  0;
+//	//e  3; 无符号整数
+//	//m  1.0011  0011
+//	//0 10000010 00110000000000000000000    s e+127 //e+01111111
+//	//01000001 00011000 00000000 00000000    存   
+//	//0x41 18 00 00
+//	return 0;
+//}
+
+
+//int main()
+//{
+//	int n = 9;
+//	float* p = (float*)&n;
+//	printf("%d\n", n);//9
+//	printf("%f\n", *p);//0.000000  取 e全0   非常小   默认的1~2的科学计数法去掉1
+//	*p = 9.0f;
+//	printf("%d\n", n);//1091567616   通过指针修改内存的才能到达 。 非常大去掉m的尾巴
+//	printf("%f\n", *p);//9.0
+//
+//
+//	return 0;
+//}
+
+
+//typedef struct S1
+//{
+//	int data;
+//	struct S1* next;     //地址
+//}P;
+
+
+//struct ST
+//{
+//	char a;
+//	double b;
+//	char c;
+//};
+//struct SV
+//{
+//	char g;
+//	struct ST;
+//	int f;
+//
+//};
+//int main()
+//{                                                                    // 7+8=15 而不是8+8=16.因为偏移处8还没使用。正好留出偏移处16。
+//	printf("%zu\n", sizeof(struct ST));    //24  vs默认对齐数为8.对齐数两者取较小值。结构体大小为最大对齐数的倍数。   第一个偏移处为0。
+//	printf("%zu\n", sizeof(struct SV));     //40   数组对齐数是类型大小  char arr[7]  1 8 1
+//	return 0;                      //含有嵌套结构体，嵌套结构体的对齐数为内部最大对齐数。                         偏移处是对齐数的倍数
+//}
+
+
+//#pragma pack(1)       //修改默认对齐数
+//
+//struct SU
+//{
+//	char a;
+//	int c;
+//
+//};
+//int main()
+//{
+//	printf("%zu\n", sizeof(struct SU));  //5
+//	return 0;
+//}
+
+
+//struct SU
+//{
+//	int data[100];
+//	int num;
+//};
+//void print1(const struct SU* p)
+//{
+//	printf("%d", *(p->data + 1));
+//}
+//int main()
+//{
+//	struct SU s1 = { {1,2,3},3 };
+//	print1(&s1);
+//	return 0;
+//}
+
+
+//struct SU
+//{
+//	int _a : 10;
+//	int _b : 20;
+//	int _c : 2;
+//};
+//int main()
+//{
+//	printf("%zu\n", sizeof(struct SU));  //4 位段。int 或char类型，表面一次开辟的空间，后面大小不得大于类型大小，
+//	int c = 0;
+//	scanf("%d", &c);
+//	struct SU d;
+//	d._b = c;
+//	printf("%d", d._b);
+//	return 0;                 //vs从左到右，填满，填不下就另外开辟空间。跨平台不清楚
+//}
+
+
+//union Un
+//{
+//	char a[5];    //1 8 1               //联合体公用内存。大小至少是最大元素的大小，且是最大对齐数的倍数
+//	int b;       //4 8 4
+//};
+//int main()
+//{
+//	union Un u= { { 1,2,3,4,5 } };
+//	printf("%zu\n", sizeof(u));//8
+//	u.b = 1;
+//
+//
+//	return 0;
+//}
+
+
+
+//int check_sys()
+//{
+//	union
+//	{
+//		int i;
+//		char j;
+//	}u;
+//	u.i = 1;
+//	return u.j;
+//}
+//int main()
+//{
+//	if (check_sys())
+//		printf("小端");
+//	else
+//		printf("大端");
+//
+//	return 0;
+//}
+
+
+
+//#define GG 9
+//int main()
+//{
+//	enum SEX
+//	{
+//		MAN,
+//		FEMAN = 5,
+//	    SCERET,
+//	};//局部
+//	printf("%d\n", MAN);//0
+//	printf("%d\n", FEMAN);//5
+//	printf("%d\n", SCERET);//6  5+1
+//	enum SEX s = MAN;    //SEX 是枚举类型 是有类型的。
+//	//MAN=9error   常量不能重新赋值    case MAN  可以 常量表达式 便于阅读
+//	printf("%d\n", s);
+//	printf("%d\n", GG);
+//	if(s==0)
+//		printf("MAN");
+//	else if(s==FEMAN)
+//		printf("FEMAN");
+//	else
+//		printf("SECRET");
+//
+//
+//	return 0;
+//}
+
+
+//#include <stdlib.h>
+//int main()
+//{
+//	int m = 0;
+//	scanf("%d", &m);
+//	int* p = (int*)malloc(m * sizeof(int));//不初始化空间。返回空指针
+//	if (p == NULL) //如果太大可能申请失败。
+//	{
+//		perror("malloc");
+//		return 1;
+//	}
+//	int i = 0;
+//	for (i = 0; i < 5; i++)
+//	{
+//		printf("%d\n", *(p + i));
+//	}
+//	for (i = 0; i < 5; i++)
+//	{
+//		*(p + i) = i + 1;
+//		printf("%d ", *(p + i));
+//
+//	}
+//	free(p);
+//	p = NULL;//free只是释放空间，并不把p拴起来。
+//
+//	return 0;
+//}
+
+
+//int main()
+//{
+//	int num = 0;
+//	scanf("%d", &num);
+//	int* p = (int*)calloc(num, sizeof(int));   //malloc+初始化
+//	if (p == NULL)
+//	{
+//		perror("calloc");
+//		return 1;
+//	}
+//	int i = 0;
+//	for (i = 0; i < 5; i++)
+//	{
+//		printf("%d\n", *(p + i));
+//	}
+//	for (i = 0; i < 5; i++)
+//	{
+//		*(p+i) = i + 1;
+//		printf("%d ", *(p + i));
+//	}
+//	free(p);
+//	p = NULL;
 //	return 0;
 //}
 

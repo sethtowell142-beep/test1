@@ -1126,3 +1126,47 @@
 //	printf("%d %d", num1, num2);
 //	return 0;
 //}
+
+
+#include <ctype.h>
+#include <assert.h>
+
+
+//int my_atoi(const char* p)
+//{
+//	assert(p);
+//	while (isspace(*p))
+//	{
+//		p++;
+//	}
+//	int f = 1;
+//	long long ret = 0;
+//	if (*p == '-')
+//	{
+//		f = -1;
+//		p++;
+//	}
+//	else if (*p == '+')
+//	{
+//
+//		p++;
+//	}
+//	while (isdigit(*p))
+//	{
+//		ret = ret * 10 + (*p-'0');      //×Ö·û  
+//		p++;
+//	}
+//   
+//	if (ret > INT_MAX)
+//		ret = INT_MAX;
+//	if (ret < INT_MIN)
+//		ret = INT_MIN;
+//	return (int)(ret*f);     //×îºó
+//}
+//int main()
+//{
+//	char arr[10] = "     123a";
+//	int r = my_atoi(arr);
+//	printf("%d", r);
+//	return 0;
+//}
