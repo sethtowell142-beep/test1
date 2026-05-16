@@ -1170,3 +1170,183 @@
 //	printf("%d", r);
 //	return 0;
 //}
+
+
+
+//union S
+//{
+//	int a;
+//	char b;
+//};
+//int main()
+//{
+//	union S s;
+//	s.a = 1;
+//	if (s.b)
+//	
+//		printf("小端");
+//	
+//	else
+//		printf("大端");
+//	return 0;
+//}
+
+
+
+//int main()
+//{
+//	int num = 0;
+//	while (scanf("%d", &num) != EOF)
+//	{
+//		int* p = (int*)calloc(num, sizeof(int));
+//		if (p == NULL)
+//		{
+//			perror("calloc");
+//			return 1;
+//		}
+//		int i = 0;
+//		for (i = 0; i < num; i++)
+//		{
+//			scanf("%d", p + i);
+//		}
+//		int r = 0;
+//		scanf("%d", &r);
+//		int slow = 0;
+//		int fast = 0;
+//		for (fast = 0; fast < num; fast++)
+//		{
+//			if (r != *(fast + p))
+//			{
+//				*(p+slow) = *(fast + p);
+//				slow++;
+//			}
+//		}
+//		if (slow>0)                   //先判断    排除某一个数  双指针 单数组 先判断 再使用
+//		{
+//			for (i = 0; i < slow; i++)
+//			{
+//				printf("%d ", *(p + i));
+//			};
+//		}
+//		else
+//		{
+//			;
+//		}
+//		free(p);
+//		p = NULL;
+//	}
+//	return 0;
+//}
+
+
+//int main()
+//{
+//	for (int i = 10000; i <= 99999; i++)       //变种水仙花
+//	{
+//		int f = 10000;
+//		int ret = 0;
+//		while (f>=10)
+//		{
+//			ret = ret + (i / f) * (i % f);
+//			f /= 10;
+//		}
+//		if (ret == i)
+//		{
+//			printf("%d ", i);
+//		}
+//	}
+//	return 0;
+//}
+
+
+
+//int main()
+//{
+//	unsigned char puc[4];
+//	struct tagPIM
+//	{
+//		unsigned char ucPim1;
+//		unsigned char ucData0 : 1;
+//		unsigned char ucData1 : 2;
+//		unsigned char ucData2 : 3;
+//	}*pstPimData;
+//	pstPimData = (struct tagPIM*)puc;
+//	memset(puc, 0, 4);
+//	pstPimData->ucPim1 = 2;
+//	pstPimData->ucData0 = 3;
+//	pstPimData->ucData1 = 4;
+//	pstPimData->ucData2 = 5;
+//	printf("%02x %02x %02x %02x\n", puc[0], puc[1], puc[2], puc[3]);
+//	return 0;
+//}
+////}//小端是指数字低位在低端的显示方法   //这直接改内存了。 从右向左。
+
+
+
+//int main()
+//{
+//	int n = 0;
+//	scanf("%d", &n);
+//	int* p1 = (int*)malloc(n * sizeof(int));
+//	if (p1 == NULL)
+//	{
+//		perror("malloc");
+//		return 1;
+//	}
+//	int c = 0;
+//	for (c = 0; c < n; c++)
+//	{
+//		scanf("%d", p1 + c);
+//	}
+//	int* p2 = (int*)realloc(p1, 2 * n * sizeof(int));
+//	if (p2 == NULL)
+//	{
+//		perror("calloc");
+//		free(p1);
+//		p1 = NULL;
+//		return 1;
+//	}
+//	p1 = p2;
+//	int i = n;
+//	/*int j = i - n;
+//	*(p1 + i) = *(p1 + j);*/
+//	for (i = n; i < 2 * n; i++)
+//	{
+//		*(p1 + i) = *(p1 + i % n);
+//	}
+//	for (c = 0; c < 2 * n; c++)
+//	{
+//		printf("%d ", *(p1 + c));
+//	}
+//	free(p1);
+//	p1 = NULL;
+//	return 0;
+//}
+
+
+//int main()
+//{
+//	int (*p)[5] = (int(*)[5])malloc(15 * sizeof(int));
+//	if (p == NULL)
+//	{
+//		perror("malloc");
+//		return 1;
+//	}
+//	int i = 0;
+//	int j = 0;
+//	for (i = 0; i < 3; i++)
+//	{
+//		for (j = 0; j < 5; j++)
+//		{
+//			*(*(p + i) + j) = j+1;
+//			printf("%d ", *(*(p + i) + j));
+//		}
+//		printf("\n");
+//	}
+//	free(p);
+//	p = NULL;
+//	return 0;
+//}
+
+
+

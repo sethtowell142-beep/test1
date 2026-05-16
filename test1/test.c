@@ -2696,7 +2696,7 @@
 //	struct SU d;
 //	d._b = c;
 //	printf("%d", d._b);
-//	return 0;                 //vs从左到右，填满，填不下就另外开辟空间。跨平台不清楚
+//	return 0;                 //vs从右向左????，填满，填不下就另外开辟空间。跨平台不清楚
 //}
 
 
@@ -2818,6 +2818,122 @@
 //	}
 //	free(p);
 //	p = NULL;
+//	return 0;
+//}
+
+
+
+//int main()
+//{
+//	int*p=(int*)calloc(5, sizeof(int));
+//	if (p == NULL)
+//	{
+//		perror("calloc");
+//		return 1;
+//	}
+//	int i = 0;
+//	for (i = 0; i < 5; i++)
+//	{
+//		*(p + i) = i + 1;
+//	}
+//	int* p2 = (int*)realloc(p, 10 * sizeof(int));//创造新空间类似于malloc(num*sizeof())==realloc(NULL,num*sizeof())
+//	if (p2 == NULL)   //1创造新空间，2拷贝原来的数据3free原空间 或者在后面直接扩容，返回原地址
+//	{
+//		perror("realloc");
+//		free(p);
+//		p = NULL;
+//		return 1;
+//	}
+//	p = p2;
+//	for (i = 5; i < 10; i++)
+//	{
+//		*(p + i) = i + 1;
+//	}
+//
+//	free(p);   //free(NULL)无作用。  常见错误。1  *NULL  2 free非动态内存  3  多次free同一个地址 4  free不是开辟的原始地址 5忘记free内存泄漏
+//	p = NULL;                                     //  6 越界访问
+//	return 0;
+//}
+
+
+
+
+//void Get(char** p)
+//{
+//	*p = (char*)calloc(100, sizeof(char));//找出p里面的地址，找到str里面的内容并替换。
+//}
+//void test()
+//{
+//	char* str = NULL;//a=10 把10 放到a里面
+//	Get(&str); //把str自己的地址放到p里面
+//	strcpy(str, "hello");
+//	printf("%s", str);
+//	free(str);
+//	str = NULL;
+//}
+//int main()
+//{
+//	test();
+//	return 0;
+//}
+
+
+
+
+//char* GetMemory()
+//{
+//	static char p[100] = { 0 };   //static 静态区 。  函数栈 摧栈 自动 出了作用域。   栈区 堆区（malloc） 静态区。
+//	return p;
+//}
+//void test()
+//{
+//	char* str = NULL;
+//	str = GetMemory();
+//	strcpy(str, "hello");
+//	printf(str);
+//}
+//int main()
+//{
+//	test();
+//	return 0;
+//}
+
+
+
+//struct S
+//{
+//	int a;
+//	int arr[];//柔性数组。至少1个别的元素，结构体大小不包括数组。使用malloc来分配内存。
+//};
+//int main()
+//{
+//	struct S* ps = (struct S*)malloc(sizeof(struct S) + 10 * sizeof(int));
+//	if (ps == NULL)
+//	{
+//		perror("malloc");
+//		return 1;
+//	}
+//	ps->a = 10;
+//	int i = 0;
+//	for (i = 0; i < 10; i++)
+//	{
+//		*(ps->arr + i) = i + 1;
+//		printf("%d ", *(ps->arr + i));
+//	}
+//	struct S* ps1 = (struct S*)realloc(ps, sizeof(struct S) + 20 * sizeof(int));
+//	if (ps1 == NULL)
+//	{
+//		perror("realloc");
+//		return 1;
+//	}
+//	ps = ps1;
+//	for (i = 10; i < 20; i++)
+//	{
+//		*(ps->arr + i) = i + 1;
+//		printf("%d ", *(ps->arr + i));
+//	}
+//	free(ps);
+//	ps = NULL;
 //	return 0;
 //}
 
