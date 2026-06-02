@@ -24,7 +24,13 @@
     <ClCompile Include="homework.c">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="408.cpp">
+    <ClCompile Include="data struct.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="LC.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="c++ language.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
