@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="add.c" />
     <ClCompile Include="c++ language.cpp" />
     <ClCompile Include="data struct.cpp" />
     <ClCompile Include="homework.c" />
