@@ -511,7 +511,7 @@ using namespace std;
 
 
 
-//引用作为函数重载 const修饰被编译器优化 创建temp &temp收常数。    默认函数 有二义性 func(int a,intb=10) func(int a) func(10)无法区分
+//引用作为函数重载 const修饰被编译器优化 创建temp &temp收常数。            默认函数 有二义性 func(int a,intb=10) func(int a) func(10)无法区分
 
 //void func(int& a)
 //{
