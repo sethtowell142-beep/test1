@@ -27,7 +27,7 @@
     <ClCompile Include="data struct.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="LC.cpp">
+    <ClCompile Include="LeetCode.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="c++ language.cpp">

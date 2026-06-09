@@ -1312,7 +1312,7 @@ using namespace std;
 //class Person
 //{
 //public:
-//	//Person operator+(Person& p)
+//	//Person operator+(Person& p)      //成员内运算符重载 对象默认是左边 p.operator+(p1);
 //	//{
 //	//	Person temp;
 //	//	temp.m_age = this->m_age + p.m_age;
@@ -1356,3 +1356,504 @@ using namespace std;
 //	cout << p4.m_age << "  " << p4.m_height << endl;
 //
 //}
+
+
+
+
+
+
+
+//<<运算符重载 只能使用全局函数 因为cout《《 p cout在左边 链式传递返回值有说法 cout只能有一个 &还有别名的意思
+
+
+
+//class game
+//{
+//	friend ostream& operator<<(ostream& out, game ki);     //友元技术
+//public:
+//	game(int x,int y)
+//	{
+//		m_a = x;
+//		m_b = y;
+//	}
+//private:
+//	int m_a;
+//	int m_b;
+//};
+//
+//
+//ostream& operator<<(ostream& out, game ki)    //重要的是类型和&
+//{
+//	cout << ki.m_a << " " << ki.m_b;
+//	return out;
+//}
+//
+//
+//void test()
+//{
+//	game ki(10,10);
+//	cout << ki <<endl;
+//}
+//
+//
+//
+//int main()
+//{
+//	test();
+//	system("pause");
+//	return 0;
+//}
+
+
+
+
+
+
+
+//class myint
+//{
+//	friend ostream& operator<<(ostream& cout, myint ki);
+//public:
+//
+//	myint& operator++()          //返回同一块空间
+//	{
+//		m++;
+//		return *this;
+//	}
+//	myint operator++(int)   //int 哑元参数 仅用于区分 有的是后置递增
+//	{
+//		myint temp;
+//		temp = *this;             //出函数被销毁 不能返回同一块空间
+//		m++;
+//		return temp;
+//	}
+//	myint()
+//	{
+//		m = 0;
+//	}
+//private:
+//	int m;
+//};
+//
+//
+//ostream& operator<<(ostream& cout, myint ki)
+//{
+//	cout << ki.m << endl;
+//	return cout;
+//}
+//
+//
+////void test()
+////{
+////	myint ki;
+////	cout << ki << endl;
+////	cout << ++(++ki) << endl;
+////	cout << ki << endl;
+////
+////}
+//
+//
+//void test()
+//{
+//	myint kiki;
+//	cout << kiki++ << endl;
+//	cout << kiki++ << endl;
+//
+//}
+//
+//int main()
+//{
+//	test();
+//	system("pause");
+//	return 0;
+//}
+
+
+
+
+
+
+//=重载运算符  class自动提供 构造 析构 拷贝 = 函数。
+
+
+//class Person
+//{
+//public:
+//	Person(int age)
+//	{
+//		m_age = new int(age);
+//	}
+//	Person& operator=(Person&p)      //堆区深拷贝
+//	{
+//		if (m_age != NULL)
+//		{
+//			delete m_age;
+//			m_age = NULL;
+//		}
+//		m_age = new int(*p.m_age);
+//		return *this;
+//	}
+//
+//	~Person()
+//	{
+//		if (m_age != NULL)
+//		{
+//			delete m_age;
+//			m_age = NULL;
+//		}
+//	}
+//	int* m_age;
+//};
+//
+//
+//
+//void test()
+//{
+//	Person p1(18);
+//	Person p2(20);
+//	Person p3(30);
+//	p3 = p2 = p1;
+//	cout << *p1.m_age << endl;
+//	cout << *p2.m_age << endl;
+//	cout << *p3.m_age << endl;
+//
+//}
+//
+//int main()
+//{
+//	test();
+//	system("pause");
+//	return 0;
+//}
+
+
+
+
+
+
+
+
+//关系运算符==  !=重载， 未定义类型的比较
+
+
+//class Person
+//{
+//public:
+//	Person(string name,int age)
+//	{
+//		m_age = age;
+//		m_name = name;
+//	}
+//	bool operator==(Person &p)
+//	{
+//		if (this->m_age == p.m_age && this->m_name == p.m_name)
+//			return true;
+//		return false;
+//	}
+//	bool operator!=(Person& p)
+//	{
+//		if (this->m_age == p.m_age && this->m_name == p.m_name)
+//			return false;
+//		return true;
+//	}
+//	string m_name;
+//	int m_age;
+//};
+//
+//void test()
+//{
+//	Person p1("tom", 20);
+//	Person p2("jerry", 20);
+//	if (p1 == p2)
+//		cout << "they are same" << endl;
+//	else
+//		cout << "they are different" << endl;
+//	if(p1!=p2)
+//		cout << "they are different" << endl;
+//	else
+//		cout << "they are same" << endl;
+//
+//}
+//
+//
+//int main()
+//{
+//	test();
+//	system("pause");
+//	return 0;
+//}
+
+
+
+
+
+
+
+
+
+//仿函数  非常灵活 像函数
+
+
+//class Person
+//{
+//public:
+//	void operator()(string name)
+//	{
+//		cout << name << endl;
+//	}
+//	int operator()(int a, int b)
+//	{
+//		return a + b;
+//	}
+//};
+//
+//
+//
+//
+//void test()
+//{
+//	Person()("kiki");    //匿名对象 Person()  用完销毁
+//	cout << Person()(100, 100) << endl;
+//}
+//
+//
+//
+//int main()
+//{
+//	test();
+//	system("pause");
+//	return 0;
+//}
+
+
+
+
+
+
+
+//继承  子类或派生类  父类或基类       子类：继承方式 父类   重复元素 和特征元素
+
+
+//class base
+//{
+//public:
+//	void foot()
+//	{
+//		cout << "foot" << endl;
+//	}
+//	void head()
+//	{
+//		cout << "head" << endl;
+//	}
+//};
+//
+//class snake :public base
+//{
+//public:
+//	void kiki()
+//	{
+//		cout << "kiki" << endl;
+//	}
+//};
+//
+//class maba :public base
+//{
+//public:
+//	void baba()
+//	{
+//		cout << "baba" << endl;
+//	}
+//};
+//
+//
+//void test()
+//{
+//	snake s;
+//	s.foot();
+//	s.head();
+//	s.kiki();
+//	cout << "--------" << endl;
+//	maba m;
+//	m.foot();
+//	m.head();
+//	m.baba();
+//}
+//
+//int main()
+//{
+//	test();
+//	system("pause");
+//	return 0;
+//}
+
+
+
+
+
+
+
+//继承方式  无论是那种继承方式 都无法继承private内容 使用public继承方式 保留父类的权限分区
+//使用protected继承方式 全部变成protected权限 类外无法访问
+//使用private继承方式 全部变成private权限
+
+
+// 私有成员只是被隐藏了 无法访问 子类大小包括父类的属性和自己的属性
+
+
+
+
+//子类和父类的析构和构造 现有父类 再有子类 先进后出 父类析构最后
+
+
+//class base
+//{
+//public:
+//	base()
+//	{
+//		cout << "base()" << endl;
+//	}
+//	~base()
+//	{
+//		cout << "~base()" << endl;
+//	}
+//};
+//class son :public base
+//{
+//public:
+//	son()
+//	{
+//		cout << "son()" << endl;
+//
+//	}
+//	~son()
+//	{
+//		cout << "~son()" << endl;
+//
+//	}
+//};
+//
+//void test()
+//{
+//	son p;
+//}
+//
+//int main()
+//{
+//	test();
+//	system("pause");
+//	return 0;
+//}
+
+
+
+
+
+
+
+//访问子类与父类中的同名函数和同名属性 需要加作用域 直接使用子类会隐藏父类函数 父类函数重载也没用
+
+//class father
+//{
+//public:
+//	father()
+//	{
+//		m_a = 100;
+//	}
+//	int m_a;
+//	void kiki()
+//	{
+//		cout << "this is father " << endl;
+//	}
+//};
+//class son :public father
+//{
+//public:
+//	son()
+//	{
+//		m_a = 200;
+//	}
+//	void kiki()
+//	{
+//		cout << "this is son " << endl;
+//	}
+//	int m_a;
+//};
+//
+//void test()
+//{
+//	son s;
+//	cout <<"son ="<< s.m_a << endl;
+//	cout << "father =" << s.father::m_a << endl;
+//	s.kiki();
+//	s.father::kiki();
+//}
+//int main()
+//{
+//	test();
+//	system("pause");
+//	return 0;
+//}
+
+
+
+
+
+
+//同名静态函数 同样的方式 不过由于静态只有一份的特性 可以通过类名访问。类名：：通过类名访问 类名：：某某作用域下的
+//                 对象.   通过对象访问
+
+
+//class base
+//{
+//public:
+//	static int  m_a;
+//	static void func()
+//	{
+//		cout << "this is base" << endl;
+//	}
+//};
+//int base::m_a = 100;
+//class son :public base
+//{
+//public:
+//	static int m_a;
+//	static void func()
+//	{
+//		cout << "this is son" << endl;
+//	}
+//};
+//int son::m_a = 200;
+//void test()
+//{
+//	son s;
+//	cout << "son. member=" << s.m_a << endl;
+//	cout << "base. member=" << s.base::m_a << endl;
+//	cout << "son:: member=" << son::m_a << endl;
+//	cout << "son::base:: member=" << son::base::m_a << endl;
+//	son::base::func();
+//	son::func();
+//
+//
+//}
+//int main()
+//{
+//	test();
+//	system("pause");
+//	return 0;
+//}
+
+
+
+
+
+
+void test()
+{
+
+}
+int main()
+{
+	test();
+	system("pause");
+	return 0;
+}

@@ -131,7 +131,7 @@
     <ClCompile Include="c++ language.cpp" />
     <ClCompile Include="data struct.cpp" />
     <ClCompile Include="homework.c" />
-    <ClCompile Include="LC.cpp" />
+    <ClCompile Include="LeetCode.cpp" />
     <ClCompile Include="test.c" />
     <ClCompile Include="test2.c" />
   </ItemGroup>
