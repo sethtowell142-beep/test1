@@ -116,3 +116,63 @@
 //    quicksort(nums, 0, numsSize - 1);
 //    return nums;
 //}
+
+
+
+
+
+
+//求第k个最大值
+
+
+
+
+//int findKthLargest(int* nums, int numsSize, int k) {
+//    void swap(int* a, int* b)
+//    {
+//        int temp = *a;
+//        *a = *b;
+//        *b = temp;
+//    }
+//    int  quicksort(int left, int right, int* nums, int k, int numsSize)
+//    {
+//        if (left == right)         //防止无限递归  最终的结束
+//            return nums[left];
+//        int start = left;
+//        int end = right;
+//        int j = left + rand() % (right - left + 1);
+//        int point = nums[j];
+//        int i = left;
+//        while (i <= end)           //一次循环的结束
+//        {
+//            if (nums[i] < point)
+//            {
+//                swap(&nums[i], &nums[start]);
+//                start++;
+//                i++;
+//            }
+//            else if (nums[i] > point)
+//            {
+//                swap(&nums[i], &nums[end]);
+//                end--;
+//            }
+//            else
+//            {
+//                i++;
+//            }
+//        }
+//        if (start == (numsSize - k))
+//            return nums[start];
+//        else if (start < (numsSize - k))
+//        {
+//            return  quicksort(end, right, nums, k, numsSize);
+//        }
+//        else
+//        {
+//            return  quicksort(left, start, nums, k, numsSize);
+//        }
+//
+//    }
+//    int ret = quicksort(0, numsSize - 1, nums, k, numsSize);
+//    return ret;
+//}

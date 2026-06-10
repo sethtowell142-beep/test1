@@ -1847,13 +1847,172 @@ using namespace std;
 
 
 
+
+//多继承 一个子类继承多个父类 父类中的同名成员需要加作用域  class 子类：继承类型 父类，继承类型 父类
+//class base1
+//{
+//public:
+//	base1()
+//	{
+//		m_a = 111;
+//	}
+//	int m_a;
+//};
+//
+//class base2
+//{
+//public:
+//	base2()
+//	{
+//		m_a = 222;
+//	}
+//	int m_a;
+//};
+//class son :public base1, public base2
+//{
+//public:
+//	son()
+//	{
+//		m_a = 333;
+//	}
+//	int m_a;
+//};
+//void test()
+//{
+//	son s;
+//	cout << s.m_a << endl;
+//	cout << s.base1::m_a << endl;
+//	cout << s.base2::m_a << endl;
+//}
+//int main()
+//{
+//	test();
+//	system("pause");
+//	return 0;
+//}
+
+
+
+
+
+// 菱形继承 虚拟继承 virtual 储存指针指向同一份数据
+//class base
+//{
+//public:
+//	int m_a;
+//};
+//class base1 :virtual public base
+//{
+//
+//};
+//class base2 :virtual public base
+//{
+//
+//};
+//class son :public base1, public base2
+//{
+//
+//};
+//void test()
+//{
+//	son s;
+//	s.m_a = 100;
+//	cout << "s.m_a=" << s.m_a << endl;
+//	cout << "s.m_a=" << s.base1::m_a << endl;
+//	cout << "s.m_a=" << s.base2::m_a << endl;
+//
+//}
+//
+//int main()
+//{
+//	test();
+//	system("pause");
+//	return 0;
+//}
+
+
+
+
+
+
+
+//多态 由于先后编译(静态） （动态）的问题 子类重写父类的虚函数 对父类的引用传入子类 访问了子类的member 原因
+
+//一个父类有一个函数 sizeof是1 函数变成虚函数 sizeof是4，4是指针的大小vfptr 指向vftable 记录 父类虚函数
+//当子类直接继承，子类也有指针和表，表的内容是父类虚函数。当子类重写同名虚函数会覆盖父类虚函数。
+
+//class base
+//{
+//public:
+//	virtual void func()           //虚函数 关键词 virtual
+//	{
+//		cout << "it is barking " << endl;
+//	}
+//};
+//
+//class son:public base
+//{
+//public:
+//	void func()
+//	{
+//		cout << "it is cat" << endl;
+//	}
+//};
+//
+//void kiki(base&q)
+//{
+//	q.func();
+//}
+//void test()
+//{
+//	son s;
+//	kiki(s);
+//}
+//
+//int main()
+//{
+//	test();
+//	system("pause");
+//	return 0;
+//}
+
+
+
+
+
+
+
+
 void test()
 {
 
 }
+
 int main()
 {
 	test();
 	system("pause");
 	return 0;
 }
+
+
+
+
+
+
+
+
+
+
+
+//void test()
+//{
+//
+//}
+//
+//int main()
+//{
+//	test();
+//	system("pause");
+//	return 0;
+//}
