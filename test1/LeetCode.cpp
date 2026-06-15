@@ -176,3 +176,150 @@
 //    int ret = quicksort(0, numsSize - 1, nums, k, numsSize);
 //    return ret;
 //}
+
+
+
+
+
+
+
+
+//归并排序 力扣148
+
+//struct ListNode* sortList(struct ListNode* head) {
+//    if (head == NULL)                 //如果是空 直接返回
+//        return head;
+//    int cout = 0;
+//    struct ListNode* pcur = head;            //使用替身遍历
+//    while (pcur)
+//    {
+//        cout++;
+//        pcur = pcur->next;
+//    }
+//    pcur = head;
+//    int* arr = (int*)malloc(cout * sizeof(int));     //使用动态函数开辟 arr[]只能放常数
+//    for (int i = 0;i < cout;i++)
+//    {
+//        arr[i] = pcur->val;
+//        pcur = pcur->next;
+//    }
+//    void merge(int arr[], int left, int mid, int right)
+//    {
+//        int n1 = mid - left + 1;              //个数与数组下标
+//        int n2 = right - mid;
+//        int* L = (int*)malloc(n1 * sizeof(int));
+//        int* R = (int*)malloc(n2 * sizeof(int));
+//        for (int i = 0;i < n1;i++)
+//        {
+//            L[i] = arr[left + i];
+//
+//        }
+//        for (int i = 0;i < n2;i++)
+//        {
+//            R[i] = arr[mid + 1 + i];
+//        }
+//        int i = 0;
+//        int j = 0;
+//        int k = 0;
+//        while (i < n1 && j < n2)
+//        {
+//            if (L[i] > R[j])
+//            {
+//                arr[left + k] = R[j];
+//                j++;
+//                k++;
+//            }
+//            else
+//            {
+//                arr[left + k] = L[i];
+//                i++;
+//                k++;
+//            }
+//
+//        }
+//        while (i < n1)
+//        {
+//            arr[left + k] = L[i];
+//            i++;
+//            k++;
+//        }
+//        while (j < n2)
+//        {
+//            arr[left + k] = R[j];
+//            j++;
+//            k++;
+//        }
+//        free(L);
+//        free(R);
+//
+//    }
+//    void mergesort(int arr[], int left, int right)
+//    {
+//        if (left >= right)
+//            return;
+//        int mid = left + (right - left) / 2;
+//        mergesort(arr, left, mid);
+//        mergesort(arr, mid + 1, right);  //边界错误是mid+1
+//        merge(arr, left, mid, right);
+//    }
+//    mergesort(arr, 0, cout - 1);    //注意数组下标为0
+//    pcur = head;
+//    for (int c = 0;c < cout;c++)
+//    {
+//        pcur->val = arr[c];
+//        pcur = pcur->next;
+//    }
+//    free(arr);
+//    return head;
+//}
+
+
+
+
+
+
+
+
+//class Solution {
+//public:
+//    ListNode* sortList(ListNode* head) {
+//        if (head == NULL || head->next == NULL)
+//            return head;
+//        ListNode* slow = head;
+//        ListNode* fast = head->next;
+//        while (fast && fast->next)
+//        {
+//            slow = slow->next;
+//            fast = fast->next->next;
+//        }
+//        ListNode* secend = slow->next;
+//        ListNode* first = head;
+//        slow->next = NULL;
+//        first = sortList(first);     //更新返回值
+//        secend = sortList(secend);
+//        return mergesort(first, secend);
+//    }
+//    ListNode* mergesort(ListNode* left, ListNode* right)
+//    {
+//        ListNode* dummy = new ListNode(0);
+//        ListNode* tail = dummy;
+//        while (left && right)
+//        {
+//            if (left->val < right->val)
+//            {
+//                tail->next = left;   //next值串联
+//                tail = tail->next;
+//                left = left->next;
+//
+//            }
+//            else
+//            {
+//                tail->next = right;
+//                tail = tail->next;
+//                right = right->next;
+//            }
+//        }
+//        tail->next = left ? left : right;
+//        return dummy->next;
+//    }
+//};

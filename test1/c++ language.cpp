@@ -1981,11 +1981,362 @@ using namespace std;
 
 
 
+//使用多态实现计算器 使用基态指针接收子类的地址  开启扩展 关闭修改 好排查问题
+
+//class baseCalculate
+//{
+//public:
+//	virtual int getResult()
+//	{
+//		return 0;
+//	}
+//	int m_num1;
+//	int m_num2;
+//};
+//
+//class addCalculate :public baseCalculate
+//{
+//public:
+//	int getResult()
+//	{
+//		return m_num1 + m_num2;
+//	}
+//};
+//
+//class subCalculate :public baseCalculate
+//{
+//public:
+//	int getResult()
+//	{
+//		return m_num1 - m_num2;
+//	}
+//};
+//class multiCalculate :public baseCalculate
+//{
+//public:
+//	int getResult()
+//	{
+//		return m_num1 * m_num2;
+//	}
+//};
+//
+//
+//
+//void test()
+//{
+//	baseCalculate* ace = new addCalculate;
+//	ace->m_num1 = 100;
+//	ace->m_num2 = 50;
+//	cout << ace->m_num1 << "+" << ace->m_num2 << "=" << ace->getResult() << endl;
+//	delete ace;
+//	ace = new subCalculate;
+//	ace->m_num1 = 100;
+//	ace->m_num2 = 50;
+//	cout << ace->m_num1 << "-" << ace->m_num2 << "=" << ace->getResult() << endl;
+//	delete ace;
+//	ace = new multiCalculate;
+//	ace->m_num1 = 100;
+//	ace->m_num2 = 50;
+//	cout << ace->m_num1 << "*" << ace->m_num2 << "=" << ace->getResult() << endl;
+//	delete ace;
+//}
+//
+//int main()
+//{
+//	test();
+//	system("pause");
+//	return 0;
+//}
+
+
+
+
+
+
+
+
+//纯虚函数   抽象类的子类必须重写 直接继承会直接继承虚函数   抽象类无法对象化   有一个纯虚函数就是抽象类
+
+//class Base
+//{
+//public:
+//	virtual int func() = 0;
+//};
+//class Son :public Base
+//{
+//public:
+//	int func()
+//	{
+//		cout << "game over" << endl;
+//		return 0;
+//	}
+//};
+//
+//
+//
+//void test()
+//{
+//	//Base a;//无法对象化
+//	Base* project = new Son;
+//	project->func();
+//
+//}
+//
+//int main()
+//{
+//	test();
+//	system("pause");
+//	return 0;
+//}
+
+
+
+
+
+
+//多态案例实现 工艺流程
+
+//class Base
+//{
+//public:
+//	virtual void step1() = 0;
+//	virtual void step2() = 0;
+//	virtual void step3() = 0;
+//	void make()
+//	{
+//		step1();
+//		step2();
+//		step3();
+//
+//	}
+//
+//};
+//class Son1 :public Base
+//{
+//	void step1()
+//	{
+//		cout << "aaa" << endl;
+//	}
+//	void step2()
+//	{
+//		cout << "bbb" << endl;
+//	}
+//	void step3()
+//	{
+//		cout << "ccc" << endl;
+//	}
+//};
+//class Son2 :public Base
+//{
+//	void step1()
+//	{
+//		cout << "111" << endl;
+//	}
+//	void step2()
+//	{
+//		cout << "222" << endl;
+//	}
+//	void step3()
+//	{
+//		cout << "333" << endl;
+//	}
+//};
+//
+//
+//void makeup(Base*dummy)   //使用抽象类指针接收 完成传入的子类不同操作不同 多态
+//{
+//	dummy->make();
+//	delete dummy;
+//}
+//
+//void test()
+//{
+//	makeup(new Son1);
+//	cout << "-----------" << endl;
+//	makeup(new Son2);
+//}
+//
+//int main()
+//{
+//	test();
+//	system("pause");
+//	return 0;
+//}
+
+
+
+
+//虚析构和纯虚析构 解决了父类无法走子类中的析构函数的问题 子类如果有数据在堆区就无法释放  都必须有实现
+
+//class Base
+//{
+//public:
+//	virtual void speak() = 0;
+//	Base()
+//	{
+//		cout << "base()" << endl;
+//
+//	}
+//	//virtual ~Base()
+//	//{
+//	//	cout << "~base()" << endl;
+//	//}
+//	virtual ~Base() = 0;   //纯虚析构必须要有函数体
+//};
+//Base::~Base()
+//{
+//	cout << "~base()" << endl;
+//}
+//class Son :public Base
+//{
+//public:
+//	void speak()
+//	{
+//		cout <<*m_name<< " is speaking" << endl;
+//	}
+//	Son(string name)
+//	{
+//		m_name = new string(name);
+//		cout << "Son()" << endl;
+//	}
+//	~Son()
+//	{
+//		if (m_name != NULL)
+//		{
+//			delete m_name;
+//			m_name = NULL;
+//		}
+//		cout << "~Son()" << endl;
+//	}
+//	string *m_name;
+//};
+//
+//
+//
+//
+//
+//void test()
+//{
+//	Base* a = new Son("kiki");
+//	a->speak();
+//	delete a;
+//}
+//
+//int main()
+//{
+//	test();
+//	system("pause");
+//	return 0;
+//}
+
+
+
+
+
+
+
+//案例 电脑厂商
+
+//class Cpu
+//{
+//public:
+//	virtual void calculate() = 0;
+//};
+//
+//class Video
+//{
+//public:
+//	virtual void display() = 0;
+//};
+//
+//class Memory
+//{
+//public:
+//	virtual void storage() = 0;
+//};
+//
+//class Intel :public Cpu
+//{
+//public:
+//	void calculate()
+//	{
+//		cout << "intel cpu" << endl;
+//	}
+//};
+//class IntelVideo :public Video
+//{
+//public:
+//	void display()
+//	{
+//		cout << "intel video " << endl;
+//	}
+//};
+//class IntelMemory :public Memory
+//{
+//public:
+//	void storage()
+//	{
+//		cout << "intel storage" << endl;
+//	}
+//};
+//
+//
+//
+//
+//
+//
+//class Computer
+//{
+//public:
+//	Computer(Cpu& c, Video& v, Memory& m)
+//	{
+//		c.calculate();
+//		v.display();
+//		m.storage();
+//	}
+//};
+//
+//
+//
+//
+//
+//
+//void test()
+//{
+//	Intel i;
+//	IntelVideo v;
+//	IntelMemory m;
+//	Computer a(i,v,m);
+//}
+//
+//int main()
+//{
+//	test();
+//	system("pause");
+//	return 0;
+//}
+
+
+
+
+
+
+//读写文件操作
+
+#include <fstream>
+
+
+
 
 
 void test()
 {
-
+	ofstream ofs;
+	ofs.open("test111.txt", ios::out);
+	ofs << "name hu yang kang" << endl;
+	ofs << "age 78" << endl;
+	ofs << "gender man" << endl;
+	ofs.close();
 }
 
 int main()
@@ -1994,6 +2345,8 @@ int main()
 	system("pause");
 	return 0;
 }
+
+
 
 
 
