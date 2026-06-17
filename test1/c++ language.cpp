@@ -2329,14 +2329,147 @@ using namespace std;
 
 
 
+//void test()
+//{
+//	ofstream ofs;
+//	ofs.open("test111.txt", ios::out);
+//	ofs << "name hu yang kang" << endl;
+//	ofs << "age 78" << endl;
+//	ofs << "gender man" << endl;
+//	ofs.close();
+//}
+//
+//int main()
+//{
+//	test();
+//	system("pause");
+//	return 0;
+//}
+
+
+
+
+
+
+
+
+
+
+
+
+
+//void test()
+//{      
+//	ifstream ifs;
+//	ifs.open("test111.txt", ios::in);    //包含头文件 fstream 创建文件流 ifstream 打开方式 操作读或写 关闭
+//	if (!ifs.is_open())
+//	{
+//		cout << "not match" << endl;
+//		return;
+//	}
+//	string str;
+//	while (getline(ifs, str))
+//	{
+//		cout << str << endl;
+//	}
+//	ifs.close();
+//}
+//
+//int main()
+//{
+//	test();
+//	system("pause");
+//	return 0;
+//}
+
+
+
+
+
+
+
+
+
+
+
+
+
+//二进制读写文件
+//class Person
+//{
+//public:
+//	char name[68];
+//	int age;
+//};
+//
+//
+//void test()
+//{
+//	Person a = { "jack",18 };
+//	ofstream ofs("Person.txt", ios::out | ios::binary);
+//	ofs.write((const char*)&a, sizeof(Person));
+//	ofs.close();
+//
+//}
+//
+//int main()
+//{
+//	test();
+//	system("pause");
+//	return 0;
+//}
+
+
+
+
+//class Person
+//{
+//public:
+//	char name[68];
+//	int age;
+//};
+//
+//
+//
+//
+//void test()
+//{
+//	ifstream ifs;
+//	ifs.open("Person.txt", ios::in | ios::binary);  //打开方式
+//	if (!ifs.is_open())
+//	{
+//		cout << "unopen" << endl;
+//		return;
+//	}
+//	Person a;
+//	ifs.read((char*)&a, sizeof(Person));          //读取方式
+//	cout << "name " << a.name << " age " << a.age << endl;
+//	ifs.close();
+//}
+//
+//int main()
+//{
+//	test();
+//	system("pause");
+//	return 0;
+//}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 void test()
 {
-	ofstream ofs;
-	ofs.open("test111.txt", ios::out);
-	ofs << "name hu yang kang" << endl;
-	ofs << "age 78" << endl;
-	ofs << "gender man" << endl;
-	ofs.close();
+
 }
 
 int main()
@@ -2345,10 +2478,6 @@ int main()
 	system("pause");
 	return 0;
 }
-
-
-
-
 
 
 
