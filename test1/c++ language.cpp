@@ -2459,8 +2459,599 @@ using namespace std;
 
 
 
+//template<typename T>    //模板 命名 数据类型  函数模板
+//void Swap(T& a, T& b)
+//{
+//	T temp = a;
+//	a = b;
+//	b = temp;
+//}
+//
+//
+//
+//
+//
+//
+//
+//void test()
+//{
+//	int a = 10;
+//	int b = 20;
+//	Swap<int>(a, b);      //方式 声明类型   或者 编译器推断 Swap(a,b); 自动推断类型必须一致
+//	cout << "a=" << a << endl;
+//	cout << "b=" << b << endl;
+//}
+//
+//int main()
+//{
+//	test();
+//	system("pause");
+//	return 0;
+//}
 
 
+
+
+
+//template<class T>
+//void func()
+//{
+//	cout << "func" << endl;
+//}
+//
+//
+//
+//void test()
+//{
+//	func<int>();   //模板的使用必须有确定的数据类型
+//}
+//
+//int main()
+//{
+//	test();
+//	system("pause");
+//	return 0;
+//}
+
+
+
+
+
+//使用模板对char和int进行排序
+//template<class T>
+//void Swap(T& a, T& b)
+//{
+//	T temp = a;
+//	a = b;
+//	b = temp;
+//}
+//
+//template<class T>
+//void Sort(T arr[], int len)
+//{
+//	for (int i = 0;i < len - 1;i++)   //选择排序 逐渐有序 
+//	{
+//		int p = i;
+//		for (int j = i + 1;j < len;j++)
+//		{
+//			if (arr[j] > arr[p])
+//			{
+//				p = j;
+//			}
+//		}
+//		if (p != i)
+//		{
+//			Swap(arr[i], arr[p]);
+//		}
+//	}
+//}
+//
+//
+//template<class T>
+//void Print(T arr[], int len)         //传递数组 类型 命名 【】 地址
+//{
+//	for (int i = 0;i < len;i++)
+//	{
+//		cout << arr[i] << " ";
+//	}
+//	cout << endl;
+//}
+//
+//
+//void test()
+//{
+//	int arr[] = { 3,4,1,2,6,7,9, };
+//	int num = sizeof(arr) / sizeof(arr[0]);
+//	Sort(arr, num);
+//	Print(arr, num);
+//	char c[] = "abcdefg";
+//	int num1 = sizeof(c) / sizeof(c[0]);
+//	Sort(c, num1);
+//	Print(c, num1);
+//}
+//
+//int main()
+//{
+//	test();
+//	system("pause");
+//	return 0;
+//}
+
+
+
+
+//普通函数和指定模板函数可以发生隐式类型转换（传char，int接收，char通过ascm值转换成int）  自动推导模板不会发生隐式类型转换
+//自动推导会报错
+//隐式转换是临时的值 
+//template<class T>
+//T add01(const T &a,const T &b)
+//{
+//	return a + b;
+//}
+//
+//
+//void test()
+//{
+//	int a = 10;
+//	char b = 'c';
+//	cout << add01 <int>(a, b) << endl;
+//	//int& r = 10;错误 &是别名 必须是占用内存空间  C++ 规定：非 const 的左值引用不能绑定到右值（临时量）。
+//	const int& r = 10;
+//}
+//
+//int main()
+//{
+//	test();
+//	system("pause");
+//	return 0;
+//}
+
+
+
+
+
+
+
+//普通函数与函数模板  从简
+//同时存在优先调用普通函数。 如果存在隐式转换，会调用模板。模板也能重载  可以通过空模板参数强制调用模板
+//void Func(int a, int b)
+//{
+//	cout << "func" << endl;
+//}
+//
+//template<class T>
+//void Func(T a, T b)
+//{
+//	cout << "template" << endl;
+//}
+//template<class T>
+//void Func(T a, T b, T c)
+//{
+//	cout << "template(a,b,c,)" << endl;
+//}
+//
+//
+//void test()
+//{
+//	int a = 0;
+//	int b = 0;
+//	Func(a, b);
+//	Func<>(a, b);
+//	Func(a, a, b);
+//	char c = 'c';
+//	char d = 'd';
+//	Func(c, d);
+//}
+//
+//int main()
+//{
+//	test();
+//	system("pause");
+//	return 0;
+//}
+
+
+
+
+
+
+//自定义数据类型，通过具体化参数来解决无法运算的问题
+
+//class Person
+//{
+//public:
+//	Person(int age, string name)
+//	{
+//		this->m_age = age;
+//		this->m_name = name;
+//	}
+//	int m_age;
+//	string m_name;
+//};
+//
+//template <class T>
+//bool Compare(T& a, T& b)
+//{
+//	if (a == b)
+//		return true;
+//	else
+//		return false;
+//}
+//
+//template<> 
+//bool Compare(Person& a, Person& b)
+//{
+//	if (a.m_age == b.m_age && b.m_name == a.m_name)
+//		return true;
+//	return false;
+//}
+//
+//
+//
+//void test()
+//{
+//	Person p1(10, "tom");
+//	Person p2(10, "tom");
+//	int ret=Compare(p1, p2);
+//	if (ret)
+//		cout << "==" << endl;
+//	else
+//		cout << "!=" << endl;
+//}
+//
+//int main()
+//{
+//	test();
+//	system("pause");
+//	return 0;
+//}
+
+
+
+
+
+
+//类模板 模板加类 通用数据类型可以多个
+//template<class AgeType,class NameType>//类模板可以有默认参数 
+//class Dog                             //<class AgeType,class NameType=int>如果NameType没有指定就默认int
+//{
+//public:
+//	AgeType m_age;
+//	NameType m_name;
+//	Dog(AgeType age, NameType name)
+//	{
+//		this->m_age = age;
+//		this->m_name = name;
+//	}
+//	void Show()
+//	{
+//		cout << "name " << this->m_name << " age " << this->m_age << endl;
+//	}
+//};
+//
+//
+//
+//
+//
+//void test()
+//{
+//	Dog<int, string> d1(1, "shilo");//类模板必须有指定类型参数 <int ,string>
+//	d1.Show();
+//
+//}
+//
+//int main()
+//{
+//	test();
+//	system("pause");
+//	return 0;
+//}
+
+
+
+
+
+//类模板成员函数在调用的时候才创建 因为不知道参数类型是什么
+//class base1
+//{
+//public:
+//	void show1()
+//	{
+//		cout << "show1" << endl;
+//	}
+//};
+//class base2
+//{
+//public:
+//	void show2()
+//	{
+//		cout << "show2" << endl;
+//	}
+//};
+//
+//template<class T>
+//class c
+//{
+//public:
+//	T t;
+//	void func1()
+//	{
+//		t.show1();
+//	}
+//	void func2()
+//	{
+//		t.show2();
+//	}
+//};
+//
+//
+//void test()
+//{
+//	c<base1> k;
+//	k.func1();
+//}
+//
+//int main()
+//{
+//	test();
+//	system("pause");
+//	return 0;
+//}
+
+
+
+
+
+//类模板对象传参 1.指定传入类型 void func(person<string ,int> & x) 最常用
+//      2 类模板化   template <class T>void func(T& x)
+//        3参数模板化 template <classT1,class T2> void func(Person<T1,T2> &x)
+
+//template<class T1,class T2>
+//class Person
+//{
+//public:
+//	T1 m_age;
+//	T2 m_name;
+//	Person(T1 age, T2 name)
+//	{
+//		m_age = age;
+//		m_name = name;
+//	}
+//	void show()
+//	{
+//		cout << "name " << this->m_name << " age " << this->m_age << endl;
+//	}
+//};
+//
+//void ShowP(Person<int, string>&p)
+//{
+//	p.show();
+//}
+//void test()
+//{
+//	Person<int, string> p(18, "ki");
+//	ShowP(p);
+//}
+//
+//int main()
+//{
+//	test();
+//	system("pause");
+//	return 0;
+//}
+
+
+
+
+
+//类模板继承问题，子类必须指定父类的参数数据类型。或者灵活使用，子类也必须使用类模板。
+
+//template<class T>
+//class base
+//{
+//public:
+//	T a;
+//	base()
+//	{
+//		cout << "T=" << typeid(T).name() << endl;
+//	}
+//};
+//class son1 :public base<int>
+//{
+//
+//};
+//template <class T1,class T2>    //T2传到baseT；
+//class son2 :public base<T2>
+//{
+//public:
+//	T1 b;
+//	son2()
+//	{
+//		cout << "T1=" << typeid(T1).name() << endl;
+//		cout << "T2=" << typeid(T2).name() << endl;
+//	}
+//};
+//
+//void test()
+//{
+//	son2<int, char> s2;
+//	base<int> b;
+//}
+//
+//int main()
+//{
+//	test();
+//	system("pause");
+//	return 0;
+//}
+
+
+
+
+//类模板成员函数的类外实现 强调模板
+
+
+//template<class T1,class T2>
+//class Person
+//{
+//public:
+//	T1 m_age;
+//	T2 m_name;
+//	Person(T1 age, T2 name);
+//	//{
+//	//	m_age = age;
+//	//	m_name = name;
+//	//}
+//	void show();
+//	//{
+//	//	cout << "name " << this->m_name << " age " << this->m_age << endl;
+//	//}
+//};
+//
+//template<class T1, class T2>
+//Person<T1,T2>::Person(T1 age, T2 name)
+//{
+//	m_age = age;
+//	m_name = name;
+//}
+//
+//template<class T1, class T2>
+//void Person<T1, T2>:: show()
+//{
+//	cout << "name " << this->m_name << " age " << this->m_age << endl;
+//}
+//
+//void test()
+//{
+//	Person<int, string> p(18, "tom");
+//	p.show();
+//}
+//
+//int main()
+//{
+//	test();
+//	system("pause");
+//	return 0;
+//}
+
+
+
+//包含头文件之后 头文件中的函数声明，会被 链接 找到 。编译阶段
+
+//类模板分文件编写的问题 。因为成员函数只有在被调用的时候才被创建，所以编译时 链接 不会找到类模板的成员函数的实现
+//解决方案 写在一起 命名为hpp （或者直接包含源文件）。
+
+
+
+
+//类模板 全局友元函数的类内实现
+//template<class T1, class T2>  //事先声明
+//class Person;
+//
+//template<class T1, class T2>
+//void print2(Person<T1, T2>& a)
+//{
+//	cout << a.m_age << a.m_name << endl;
+//}
+//template<class T1,class T2>
+//class Person
+//{
+//	friend void print2<>(Person<T1, T2>& a);  //外部实现  <>  这是模板
+//	friend void print(Person<T1, T2>& a)
+//	{
+//		cout << a.m_age << a.m_name << endl;
+//	}
+//public:
+//	T1 m_age;
+//	T2 m_name;
+//	Person(T1 age, T2 name)
+//	{
+//		m_age = age;
+//		m_name = name;
+//	}
+//	void show()
+//	{
+//		cout << "name " << this->m_name << " age " << this->m_age << endl;
+//	}
+//};
+//
+//
+//void test()
+//{
+//	Person<int, string> p(18, "jerry");
+//	print2(p);
+//	print(p);
+//	p.show();
+//}
+//
+//int main()
+//{
+//	test();
+//	system("pause");
+//	return 0;
+//}
+
+
+
+
+
+//构造我的数组 类模板
+
+template <class T>
+class MyArray
+{
+public:
+	MyArray(int Capacity)
+	{
+		cout << "MyArray" << endl;
+		this->m_Capacity = Capacity;
+		this->m_Size = 0;
+		T* m_p = new T[m_Capacity];
+	}
+	MyArray(const MyArray& arr)  //拷贝构造 将一个东西复制到一个新的容器
+	{
+		cout << "copy MyArray" << endl;
+		this->m_Size = arr.m_Size;
+		this->m_Capacity = arr.m_Capacity;
+		this->m_p = new T[arr.m_Capacity];
+		for (int i = 0;i < arr.m_Size;i++)
+		{
+			this->m_p[i] = arr.m_p[i];
+		}
+	}
+	MyArray& operator=(const MyArray& arr)
+	{
+		if (this == &arr)
+			return *this;
+		cout << "MyArray operator=" << endl;
+		if (this->m_p != NULL)
+		{
+			delete[]m_p;
+			m_p = NULL;
+		}
+		this->m_Size = arr.m_Size;
+		this->m_Capacity = arr.m_Capacity;
+		this->m_p = new T[arr.m_Capacity];
+		for (int i = 0;i < arr.m_Size;i++)
+		{
+			this->m_p[i] = arr.m_p[i];
+		}
+		return *this;
+	}
+	~MyArray()
+	{
+		cout << "~MyArray" << endl;
+		if (m_p != NULL)
+		{
+			delete[]m_p;
+			m_p = NULL;
+		}
+	}
+private:
+	T* m_p;
+	int m_Size;
+	int m_Capacity;
+};
 
 
 
@@ -2469,7 +3060,10 @@ using namespace std;
 
 void test()
 {
-
+	MyArray<int> arr1(10);
+	MyArray<int>arr2(arr1);
+	MyArray<int> arr3(20);
+	arr3 = arr1;
 }
 
 int main()
@@ -2478,6 +3072,7 @@ int main()
 	system("pause");
 	return 0;
 }
+
 
 
 
