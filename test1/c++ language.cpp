@@ -3150,24 +3150,210 @@ using namespace std;
 
 
 
+//初识stl 容器 算法 迭代器 仿函数 适配器 空间分配
+//容器 空间 物理空间的有无序  算法 寻找或者改变 解决问题的方案 迭代器 访问容器
+
+#include <vector>
+#include <algorithm>
+
+//void Print(int val)
+//{
+//	cout << val << endl;
+//}
+//void test()
+//{
+//	vector<int> v;
+//	for (int i = 10;i < 50;i += 10)
+//	{
+//		v.push_back(i);
+//	}
+//	for (vector<int>::iterator k = v.begin();k != v.end();k++)  //vector<int>::iterator 某类型容器 v.begin() 具体指针
+//	{
+//		cout << *k << endl;
+//	}
+//	for_each(v.begin(), v.end(), Print); //内置算法 。回调函数 
+//}
+//
+//int main()
+//{
+//	test();
+//	system("pause");
+//	return 0;
+//}
+
+
+
+
+
+
+
+ //自定义类型数据 迭代器中尖括号内容=解引用后的
+//class Person
+//{
+//public:
+//	Person(int age, string name)
+//	{
+//		this->m_age = age;
+//		this->m_name = name;
+//	}
+//	string m_name;
+//	int  m_age;
+//};
+//
+//
+//
+//
+//
+//void test()
+//{
+//	vector<Person> v;
+//	Person p1(18, "aaa");
+//	Person p2(18, "bbb");
+//	Person p3(18, "ccc");
+//	v.push_back(p1);
+//	v.push_back(p2);
+//	v.push_back(p3);
+//	for (vector<Person>::iterator it = v.begin();it != v.end();it++)
+//	{
+//		cout << "name = " << it->m_name << "  age = " << it->m_age << endl;
+//		cout << "name = " << (*it).m_name << "  age = " << (*it).m_age << endl;
+//	}
+//
+//}
+//
+//void test01()
+//{
+//	vector<Person*> v;
+//	Person p1(18, "aaa");
+//	Person p2(18, "bbb");
+//	Person p3(18, "ccc");
+//	v.push_back(&p1);
+//	v.push_back(&p2);
+//	v.push_back(&p3);
+//	for (vector<Person*>::iterator it = v.begin();it != v.end();it++)
+//	{
+//		cout << " !!name = " << (*it)->m_name<< " !! age = " << (*it)->m_age << endl;
+//	}
+//}
+//int main()
+//{
+//	test();
+//	test01();
+//	system("pause");
+//	return 0;
+//}
+
+
+
+
+//利用嵌套容器实现二维数组
+
+
+
+//void test()
+//{
+//	vector<vector<int>> v;
+//	vector<int> v1;
+//	vector<int> v2;
+//	vector<int> v3;
+//	for (int i = 0;i < 3;i++)
+//	{
+//		v1.push_back(i);
+//		v2.push_back(i + 1);
+//		v3.push_back(i + 2);
+//	}
+//	v.push_back(v1);
+//	v.push_back(v2);
+//	v.push_back(v3);
+//	for (vector<vector<int>>::iterator it = v.begin();it != v.end();it++) //访问容器使用迭代器.
+//	{
+//		for (vector<int>::iterator ite = (*it).begin();ite != (*it).end();ite++) //指针解引用是<>内容物
+//		{
+//			cout << *ite << " ";
+//		}
+//		cout << endl;
+//	}
+//
+//}
+//
+//int main()
+//{
+//	test();
+//	system("pause");
+//	return 0;
+//}
+
+
+
+
+//string 的构造函数 是一个类 内置多种接口
 
 
 
 void test()
 {
-
+	string s1;
+	const char* c = "abc";
+	string s2(c);
+	cout << "s2=" << s2 << endl;
+	string s3(5, 'a');
+	cout << "s3=" << s3 << endl;
+	string s4 = "kiki";
+	string s5(s4);
+	cout << "s5=" << s5 << endl;
+	s2.assign("hello kiki", 5);
+	cout << "s2=" << s2 << endl;
+	string str1;
+	string str2 = "i";
+	str1 += str2;
+	cout << "str1=" << str1 << endl;
+	string str3 = "am kiki";
+	str1.append(str3, 3, 4); //从第几个开始截取几个
+	cout << "str1=" << str1 << endl;
+	string str4 = "abcdefde";
+	int pos = str4.find("de");
+	if (pos == -1)
+		cout << "no result" << endl;
+	else
+		cout << "the position is " << pos << endl;
+	pos = str4.rfind("de");//rfind(rightfind)
+	cout << "the position is " << pos << endl;
+	str4.replace(1, 2, "cc");//pos nums str
+	cout << str4 << endl;
+	string str5 = "acacac";
+	string str6 = "acacac";
+	int ret = str5.compare(str6);
+	if (ret == 0)
+		cout << "==" << endl;
+	else
+		cout << "!=" << endl;
 }
-
+void test01()
+{
+	string str = "visit";
+	for (int i = 0;i < str.size();i++)
+	{
+		cout << str[i] << " ";
+	}
+	cout << endl;
+	for (int i = 0;i < str.size();i++)
+	{
+		cout << str.at(i) << " ";
+	}
+	cout << endl;
+	for (int i = 0;i < str.size();i++)
+	{
+		str[i] = 'x';
+	}
+	cout << str << endl;
+}
 int main()
 {
-	test();
+	//test();
+	test01();
 	system("pause");
 	return 0;
 }
-
-
-
-
 
 
 
